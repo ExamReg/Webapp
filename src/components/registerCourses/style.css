@@ -1,0 +1,181 @@
+.container-register
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+.container-register .title-register{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.container-register .btn-register{
+    height: 30px;
+    margin-left: 10px;
+    color: white;
+    background-color: #1b548b;
+    border: 1px solid #1b548b;
+    border-radius: 3px;
+}
+.container-register .tbl-register{
+   font-size: 13px;
+    overflow: auto;
+    margin: 10px 0px;
+}
+.container-register .tbl-register table{
+    width: 100%;
+}
+.container-register .tbl-register th{
+    font-size: 14px;
+    position: sticky;
+    background-color: #1b548b;
+    color: #fff;
+    top:-1px;
+    height: 30px;
+
+}
+.container-register .tbl-register td{
+    font-size: 14px;
+    height: 30px;
+    text-align: center;
+}
+.container-register .tbl-register tr:nth-child(even)
+{
+    background-color: #f2f2f2;
+}
+/* part one register*/
+.container-register .part-register{
+    overflow: hidden;
+    padding: 10px 0px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 45%;
+    margin-bottom: 2%;
+}
+.container-register .part-register input{
+    border-radius: 3px;
+    font-size: 14px;
+    height: 20px;
+    padding: 5px;
+    width: 260px;
+    border: 1px solid #1b548b;
+}
+.container-register .part-register .header-register{
+    justify-content: flex-end;
+    display: flex;
+}
+/*part result register*/
+.container-register .part-result-register{
+    overflow: hidden;
+    padding: 10px 0px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    height: 45%;
+    margin-bottom: 2%;
+}
+.container-register .part-result-register .footer-register{
+    display: flex;
+    justify-content: space-between;
+}
+/*
+!*title*!
+.container-register .title-register{
+    font-weight: bold;
+    margin-bottom: 10px;
+
+}
+!*header*!
+.container-register .header-register{
+    margin-bottom: 10px;
+}
+.container-register .header-register input{
+    border-radius: 3px;
+    font-size: 14px;
+    height: 25px;
+    padding: 5px;
+    width: 260px;
+    margin-top: 7px;
+    border: 1px solid #1b548b;
+}
+.container-register .header-register button{
+    height: 35px;
+    margin: 0px 10px;
+    color: white;
+    background-color: #1b548b;
+    border: 1px solid #1b548b;
+    border-radius: 3px;
+
+}
+.container-register .body-register{
+    margin: 20px 0px;
+
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.container-register .body-register .tbl-register{
+    height: 200px;
+    overflow: auto;
+}
+.container-register .body-register .tbl-register table{
+    width: 100%;
+}
+.container-register .body-register .tbl-register th{
+    text-align: left;
+    position: sticky;
+    background-color: #fff;
+    top:-1px;
+    height: 30px;
+    font-size: 15px;
+}
+.container-register .body-register .tbl-register td{
+    height: 30px;
+}
+.container-register .body-register .tbl-register tr:nth-child(even)
+{
+    background-color: #f2f2f2;
+}
+
+!*bang da dang ki*!
+.result-register .title-result{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.result-register .tbl-result-register{
+    height: 150px;
+    overflow: auto;
+}
+.result-register .tbl-result-register table{
+    width: 100%;
+}
+.result-register .tbl-result-register th{
+    text-align: left;
+    position: sticky;
+    background-color: #fff;
+    top:-1px;
+    height: 30px;
+    font-size: 15px;
+}
+.result-register .tbl-result-register td{
+    height: 30px;
+}
+.result-register .tbl-result-register tr:nth-child(even)
+{
+    background-color: #f2f2f2;
+}
+.result-register .btn-save-change{
+    height: 35px;
+    margin: 0px 10px;
+    color: white;
+    background-color: #1b548b;
+    border: 1px solid #1b548b;
+    border-radius: 3px;
+    float: right;
+}*/

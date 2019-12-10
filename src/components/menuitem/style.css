@@ -1,0 +1,57 @@
+.menu-item{
+    cursor: pointer;
+}
+    .menu-item:hover{
+        background-color:#e6e6e6;
+    }
+    .menu-item .link-text{
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        text-decoration: none;
+        cursor: pointer;
+        color: #000000;
+        padding: 15px 10px 15px 20px;
+        transition-duration: .15s;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    .menu-item span{
+        margin-right: 15px;
+        height: 24px;
+        width: 24px;
+
+    }
+    .menu-item .resultStudy{
+        background: url("./icons/icons8-home-24-black.png") no-repeat ;
+    }
+    .menu-item .register{
+        background: url("./icons/icons8-stack-overflow-24-black.png") no-repeat;
+    }
+    .menu-item .print{
+        background: url("./icons/icons8-stack-overflow-24-black.png") no-repeat;
+    }
+
+    .checked{
+        color: #000 !important;
+    }
+    .checked span{
+        margin-right: 15px;
+        height: 24px;
+        width: 24px;
+    }
+    .checked{
+        color:#1b548b !important;
+    }
+    .checked .resultStudy{
+        background: url("./icons/icons8-home-24-blue.png") no-repeat;
+    }
+    .checked .register{
+        background: url("./icons/icons8-stack-overflow-24-blue.png") no-repeat;
+    }
+    .checked .print{
+        background: url("./icons/icons8-stack-overflow-24-blue.png") no-repeat;
+    }
+

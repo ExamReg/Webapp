@@ -1,0 +1,150 @@
+/*HEADER*/
+.container-home .header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    box-shadow: 0 1px 10px rgba(0,0,0,.1);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.container-home .header .group-title{
+    display: flex;
+}
+.container-home .header .group-title .logo{
+    height: 80px;
+    width: 80px;
+    margin: 0px 10px;
+}
+.container-home .header .group-title .title{
+    font-size: 30px;
+    padding: 25px 10px;
+    color: #1b548b;
+    font-family: "Times New Roman";
+}
+.container-home .header .group-user-menu{
+    display: flex;
+    margin: 20px 0px;
+}
+.group-user-menu .user-info{
+    border: 1px solid #1b548b;
+
+    background-color: #1b548b;
+    color: #fff;
+    padding: 10px 10px;
+    height: 16px;
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+/*Content*/
+
+.container-home .content-home{
+    top: 100px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    position: absolute;
+}
+.container-home .menubar{
+    width: 260px;
+    left: 0;
+    bottom: 0;
+    top:0;
+    position: absolute;
+    color: #000;
+    background-color: #f3f3f3;
+
+}
+.container-home .content{
+    position: absolute;
+    top: 0;
+    left: 260px;
+    right: 0;
+    bottom: 0;
+    margin: 20px 20px;
+}
+/*dropdown menu*/
+.dropbtn {
+    border: 1px solid #1b548b;
+    background-color: #1b548b;
+    color: #fff;
+    padding: 10px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    right:0px;
+    position: absolute;
+    background-color: #f2f2f2;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+
+.dropdown-content .btn-logout {
+    cursor: pointer;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+.dropdown-content .btn-logout:hover {
+    background-color: #1b548b;
+    color: white;
+}
+
+.dropdown-content .btn-logout .icon-logout{
+    background:url("./icons/icons8-exit-24 (1).png") no-repeat 1px 1px;
+    padding: 4px 15px;
+}
+.dropdown-content .btn-logout .icon-logout:hover{
+    background:url("./icons/icons8-exit-24 (2).png") no-repeat 1px 1px;
+    padding: 4px 15px;
+}
+
+
+.dropdown-content .btn-user {
+    cursor: pointer;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+.dropdown-content .btn-user:hover {
+    background-color: #1b548b;
+    color: white;
+}
+
+.dropdown-content .btn-user .icon-user{
+    background:url("./icons/icons8-person-24.png") no-repeat 1px 1px;
+    padding: 4px 15px;
+}
+.dropdown-content .btn-user .icon-user:hover{
+    background:url("./icons/icons8-person-24 (2).png") no-repeat 1px 1px;
+    padding: 4px 15px;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #1b548b;
+}

@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Route, Switch, Redirect} from "react-router-dom"
+import {APP_ROUTER} from "./config/app-router";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    if(window.location.pathname === "/") {
+        window.location.replace("/login");
+    }
+    else {
+        return (
+            <div>
+                <Switch>
+                    {
+                        APP_ROUTER.map((route, index) => {
+                            return (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    component={
+                                        route.requiredToken
+                                            ? checkAuthen(route.component)
+                                            : checkUnAuthen(route.component)
+                                    }
+                                />
+                            );
+                        })
+                    }
+                </Switch>
+            </div>
+        );
+    }
 }
 
+function checkAuthen(component) {
+    return localStorage.getItem("token") ? component : () => <Redirect to='/login'/>
+}
+function checkUnAuthen(component) {
+    return !localStorage.getItem("token") ? component : () => <Redirect to='/home'/>
+
+}
 export default App;

@@ -1,0 +1,70 @@
+.container-study{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+.container-study .title-study{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.container-study .dropdown-semester{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.container-study .dropdown-semester select{
+    border-radius: 3px;
+    border: 1px solid #1b548b;
+    height: 20px;
+    background-color: #fff;
+
+    margin-left: 10px;
+}
+/*table study */
+.container-study .tbl-study{
+    
+}
+/*header table*/
+.tbl-study .header-tbl-study{
+    margin-bottom: 10px;
+}
+.tbl-study .header-tbl-study .name-tbl-study{
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.tbl-study .header-tbl-study .student-info{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.tbl-study .header-tbl-study .student-info div{
+    margin-right: 20px;
+}
+/*body study*/
+.tbl-study .body-tbl-study{
+    overflow: auto;
+}
+.tbl-study .body-tbl-study table{
+    width: 100%;
+}
+.tbl-study .body-tbl-study th{
+    position: sticky;
+    background-color: #1b548b;
+    color: #fff;
+    top:-1px;
+    height: 30px;
+    font-size: 14px;
+
+}
+.tbl-study .body-tbl-study td{
+    height: 30px;
+    text-align: center;
+    font-size: 14px;
+}
+.tbl-study .body-tbl-study tr:nth-child(even)
+{
+    background-color: #f2f2f2;
+}
