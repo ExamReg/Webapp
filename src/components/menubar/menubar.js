@@ -13,7 +13,7 @@ class MenuBar extends React.Component {
         this.state = {
             menuItems: [
                 {
-                    title: "Kết quả học tập ",
+                title: "Quản lý môn học  ",
                     name:"resultStudy",
                     route: this.pathHomeStudy
                 },

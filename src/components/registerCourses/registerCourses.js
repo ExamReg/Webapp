@@ -8,38 +8,109 @@ class RegisterCourses extends React.Component{
     render() {
         return (
             <div className="container-register">
-                <div className="part-register">
-                    <div className="title-register">Đăng ký thi - Học kì 1 2019-2020 </div>
-                    <div className="header-register">
-                        <input type="text" className="" placeholder="Nhập mã môn học/tên môn học "/>
-                        <button type="button" className="btn-register">Tìm kiếm </button>
-                    </div>
-                    <div className="tbl-register register">
+                <div className="title-register">Đăng ký thi - Học kì 1 2019-2020 </div>
+                <div className="input-find">
+                    <input type="text" className="" placeholder="Nhập mã môn học/tên môn học "/>
+                    <button type="button" className="btn-register">Tìm kiếm </button>
+                </div>
+                <div className="box blue-border">
+                    <div className="box-header">Đăng kí lịch thi - Học kì 1 2018-2019</div>
+                    <div className="box-content">
                         <table>
                             <thead>
                             <tr>
                                 <th>Mã môn học</th>
                                 <th>Tên môn học</th>
+                                <th className="style-center">TC</th>
+                                <th  className="style-center">Tổng SV</th>
+                                <th  className="style-center">Đã ĐK</th>
                                 <th>Ngày thi </th>
                                 <th>Giờ thi </th>
-                                <th>Ca thi </th>
+                                <th  className="style-center">Ca thi </th>
                                 <th>Phòng thi </th>
-                                <th>Đăng kí </th>
+                                <th  className="style-center">Chọn </th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>INT2028 2</td>
                                 <td>Toán rời rạc </td>
+                                <td  className="style-center">3</td>
+                                <td  className="style-center">80</td>
+                                <td  className="style-center">45</td>
+                                <td>23/04/2019</td>
+                                <td>7 AM</td>
+                                <td  className="style-center">3</td>
+                                <td>308G2</td>
+                                <td  className="style-center"><img src={iconCheck}/> </td>
+                            </tr>
+                            <tr>
+                                <td>INT2028 2</td>
+                                <td>Toán rời rạc </td>
+                                <td  className="style-center">3</td>
+                                <td  className="style-center">80</td>
+                                <td  className="style-center">45</td>
+                                <td>23/04/2019</td>
+                                <td>7 AM</td>
+                                <td  className="style-center">3</td>
+                                <td>308G2</td>
+                                <td  className="style-center"><img src={iconCheck}/> </td>
+                            </tr>
+                            <tr>
+                                <td>INT2028 2</td>
+                                <td>Toán rời rạc </td>
+                                <td  className="style-center">3</td>
+                                <td  className="style-center">80</td>
+                                <td  className="style-center">45</td>
+                                <td>23/04/2019</td>
+                                <td>7 AM</td>
+                                <td  className="style-center">3</td>
+                                <td>308G2</td>
+                                <td  className="style-center"><img src={iconCheck}/> </td>
+                            </tr>
+                            <tr>
+                                <td>INT2028 2</td>
+                                <td>Toán rời rạc </td>
+                                <td  className="style-center">3</td>
+                                <td  className="style-center">80</td>
+                                <td  className="style-center">45</td>
+                                <td>23/04/2019</td>
+                                <td>7 AM</td>
+                                <td  className="style-center">3</td>
+                                <td>308G2</td>
+                                <td  className="style-center"><img src={iconCheck}/> </td>
+                            </tr>
+                            <tr>
+                                <td>INT2028 2</td>
+                                <td>Toán rời rạc </td>
+                                <td  className="style-center">3</td>
+                                <td  className="style-center">80</td>
+                                <td  className="style-center">45</td>
+                                <td>23/04/2019</td>
+                                <td>7 AM</td>
+                                <td  className="style-center">3</td>
+                                <td>308G2</td>
+                                <td  className="style-center"><img src={iconCheck}/> </td>
+                            </tr>
+                            <tr>
+                                <td>INT2028 2</td>
+                                <td>Toán rời rạc </td>
+                                <td>3</td>
+                                <td>80</td>
+                                <td>45</td>
                                 <td>23/04/2019</td>
                                 <td>7 AM</td>
                                 <td>3</td>
                                 <td>308G2</td>
                                 <td><img src={iconCheck}/> </td>
                             </tr>
+
                             <tr>
                                 <td>INT2028 2</td>
                                 <td>Toán rời rạc </td>
+                                <td>3</td>
+                                <td>80</td>
+                                <td>45</td>
                                 <td>23/04/2019</td>
                                 <td>7 AM</td>
                                 <td>3</td>
@@ -49,6 +120,9 @@ class RegisterCourses extends React.Component{
                             <tr>
                                 <td>INT2028 2</td>
                                 <td>Toán rời rạc </td>
+                                <td>3</td>
+                                <td>80</td>
+                                <td>45</td>
                                 <td>23/04/2019</td>
                                 <td>7 AM</td>
                                 <td>3</td>
@@ -59,9 +133,9 @@ class RegisterCourses extends React.Component{
                         </table>
                     </div>
                 </div>
-                <div className="part-result-register">
-                    <div className="title-register">Danh sách môn học đã đăng ký hoặc đã chọn </div>
-                    <div className="tbl-register result">
+                <div className="box green-border">
+                    <div className="box-header">Danh sách môn học đã đăng ký hoặc đã chọn</div>
+                    <div className="box-content">
                         <table>
                             <thead>
                             <tr>
@@ -113,13 +187,11 @@ class RegisterCourses extends React.Component{
                             </tbody>
                         </table>
                     </div>
-                    <div className="footer-register">
-                        <div>Tổng số môn đã đăng kí: [3]</div>
-                        <button className="btn-register">Lưu thay đổi </button>
-                    </div>
-
                 </div>
-
+                <div className="footer-register">
+                    <div>Tổng số môn đã đăng kí: [3]</div>
+                    <button className="btn-register">Lưu thay đổi </button>
+                </div>
             </div>);
     }
 }

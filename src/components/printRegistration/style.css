@@ -4,6 +4,7 @@
     right: 0;
     left: 0;
     bottom: 0;
+
 }
 .container-print  .title-print {
     font-weight: bold;
@@ -12,50 +13,45 @@
 .container-print  .dropdown-semester{
     text-align: center;
     margin-bottom: 20px;
+
 }
 .container-print  .dropdown-semester select{
     border-radius: 3px;
     border: 1px solid #1b548b;
     height: 20px;
-    background-color: #fff;
-
+    background-color: #f2f2f2;
+    width: 400px;
     margin-left: 10px;
 }
 /*table print  */
 .container-print  .tbl-print {
-
+    margin-top: 10px;
+    font-family: "Times New Roman" ;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #dfdfdf;
+    box-shadow: #000000;
+    margin-bottom: 20px;
 }
 /*header table*/
 .tbl-print  .header-tbl-print {
     margin-bottom: 10px;
 }
-.tbl-print  .header-tbl-print  .name-tbl-print {
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 5px;
-}
-.tbl-print  .header-tbl-print  .student-info{
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-.tbl-print  .header-tbl-print  .student-info div{
-    margin-right: 20px;
-}
+
+
 /*body print */
 .tbl-print  .body-tbl-print {
     overflow: auto;
+    max-height: 500px;
 }
 .tbl-print  .body-tbl-print  table{
     width: 100%;
-
+    border-collapse: collapse;
 }
 .tbl-print  .body-tbl-print  th{
     font-size: 14px;
     position: sticky;
-    background-color: #1b548b;
-    color: #fff;
+    border: 1px solid gray;
     top:-1px;
     height: 30px;
 
@@ -64,24 +60,56 @@
     font-size: 14px;
     height: 30px;
     text-align: center;
+    border: 1px solid gray;
 }
-.tbl-print  .body-tbl-print  tr:nth-child(even)
-{
-    background-color: #f2f2f2;
-}
-.tbl-print .btn-print{
-    margin-top: 20px;
+
+.container-print .btn-print{
+    margin-top: 10px;
     background-color: #1b548b;
     border: 1px solid #1b548b;
     border-radius: 3px;
     font-size: 14px;
     color: #fff;
-    padding: 9px 5px;
-    float: right;
+    padding: 8px 5px;
     /*neu div sau dung thif clear:right*/
     cursor: pointer;
 }
-.tbl-print .btn-print .icon-print{
-    background:url("./icons/icons8-print-24 (4).png") no-repeat 1px 1px;
-    padding: 4px 15px;
+.container-print .btn-print .icon-print{
+    background:url("./icons/icons8-print-16.png") no-repeat 1px 1px;
+    padding: 0px 12px;
+}
+/*title form*/
+.container-print .title-form{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.container-print .title-form .title-left{
+    text-align: center;
+}
+.container-print .title-form .title-right{
+    text-align: center;
+}
+.tbl-print  .header-tbl-print  .name-tbl-print.date{
+    margin-bottom: 40px;
+}
+.tbl-print  .header-tbl-print  .student-info{
+
+    margin-bottom: 20px;
+}
+.tbl-print  .header-tbl-print  .student-info div{
+    margin-bottom: 5px;
+}
+.tbl-print  .header-tbl-print  .student-info div span{
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.tbl-print  .header-tbl-print  .name-tbl-print {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.tbl-print  .header-tbl-print  .name-tbl-print.date{
+    margin-bottom: 40px;
 }

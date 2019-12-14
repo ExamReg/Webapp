@@ -10,3 +10,19 @@ export function sendPostRequestWithoutToken(route, payload)
     console.log(route_api)
     return axios.post(route_api, payload).then(handleResult);
 }
+export function sendGetRequest(route) {
+    let route_api = `${URL_BASE}${route}`;
+    let token =  localStorage.getItem("token");
+    let headers = {
+        token:token
+    }
+    return axios.get(route_api,{headers}).then(handleResult);
+}
+export function sendPutRequest(route, payload) {
+    let route_api = `${URL_BASE}${route}`;
+    let token =  localStorage.getItem("token");
+    let headers = {
+        token:token
+    }
+    return axios.put(route_api,payload, {headers}).then(handleResult);
+}
