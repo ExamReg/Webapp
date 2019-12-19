@@ -8,14 +8,16 @@ class MenuItem extends React.Component{
         return (
             <li className="menu-item">
                 <NavLink exact
-                    activeStyle={{backgroundColor : "#fff",
-
+                    activeStyle={{
+                        backgroundColor : "#fff",
+                        color:"#1b548b"
                     }}
-                    activeClassName={"checked"}
                     to={this.props.route} className="link-text">
 
-                    <span className={this.props.name}></span>
-                    {this.props.title}
+                    <div className="icon-content">
+                        <i className={this.props.name}></i>
+                    </div>
+                    <span>{this.props.title}</span>
 
                 </NavLink>
             </li>

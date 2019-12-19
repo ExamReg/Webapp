@@ -1,8 +1,38 @@
 import React from "react"
 import "./style.css"
+import {getUserInfo} from "../../api/authentication-api";
 
 class PrintRegistration extends React.Component{
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            nameUser:"",
+            idUser:"",
+            birthday:""
+        }
+    }
+    async getInfoUser() {
+        const res = await getUserInfo();
+        if (res.success) {
+            this.setState({
+                nameUser: res.data.profile.name,
+                idUser: res.data.profile.id_student,
+                birthday: res.data.profile.birthday
+            })
+        } else {
+            console.log(res.message)
+        }
+    }
+    componentDidMount() {
+        this.getInfoUser();
+    }
+
     render() {
+        let dateObj = new Date();
+        let  month = dateObj.getUTCMonth() + 1; //months from 1-12
+        let day = dateObj.getUTCDate();
+        let year = dateObj.getUTCFullYear();
         return (
             <div className="container-print ">
                 <div className="title-print ">
@@ -25,20 +55,16 @@ class PrintRegistration extends React.Component{
                     </div>
                     <div className="header-tbl-print ">
                         <div className="name-tbl-print">KẾT QUẢ ĐĂNG KÍ THI - HỌC KÌ I NĂM 2018-2019</div>
-                        <div className="name-tbl-print date">Ngày 20 tháng 11 năm 2019</div>
+                        <div className="name-tbl-print date">Ngày {day} tháng {month} năm {year}</div>
                         <div className="student-info">
-                            <div>
-                                Sinh viên:
-                                <span>Phùng Thị Tuyết Mai</span>
-                            </div>
-                            <div>
-                                Ngày sinh:
-                                <span>230-4-1999</span>
-                            </div>
-                            <div>
-                                Mã sinh viên:
-                                <span>17020875</span>
-                            </div>
+                            <dl>
+                                <dt>Họ và tên:</dt>
+                                <dd>{this.state.nameUser}</dd>
+                                <dt>Ngày sinh:</dt>
+                                <dd>{this.state.birthday}</dd>
+                                <dt>Mã sinh viên:</dt>
+                                <dd>{this.state.idUser}</dd>
+                            </dl>
                         </div>
                     </div>
                     <div className="body-tbl-print ">

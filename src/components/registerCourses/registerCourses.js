@@ -1,10 +1,38 @@
 import React from "react"
 import "./style.css"
-import iconBin from "./icons/icons8-trash-24 (2).png";
-import iconUncheck from "./icons/icons8-unchecked-checkbox-24 (1).png";
-import iconCheck from "./icons/icons8-checked-checkbox-24.png";
+import {getListExam} from "../../api/course-api";
 
 class RegisterCourses extends React.Component{
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            exams:[],
+            examRegisters:[]
+        }
+        this.getListExam = this.getListExam.bind(this);
+        this.selectCourse = this.selectCourse.bind(this);
+    }
+    async getListExam()
+    {
+        const res = await getListExam();
+        if(res.success)
+        {
+            this.setState({exams: res.data.exams})
+        }
+        else
+        {
+            console.log(res.message);
+        }
+    }
+    selectCourse(index)
+    {
+        console.log(index)
+    }
+    componentDidMount() {
+        this.getListExam();
+    }
+
     render() {
         return (
             <div className="container-register">
@@ -22,113 +50,34 @@ class RegisterCourses extends React.Component{
                                 <th>Mã môn học</th>
                                 <th>Tên môn học</th>
                                 <th className="style-center">TC</th>
-                                <th  className="style-center">Tổng SV</th>
-                                <th  className="style-center">Đã ĐK</th>
+                                <th className="style-center">Tổng SV</th>
+                                <th className="style-center">Đã ĐK</th>
                                 <th>Ngày thi </th>
                                 <th>Giờ thi </th>
-                                <th  className="style-center">Ca thi </th>
                                 <th>Phòng thi </th>
-                                <th  className="style-center">Chọn </th>
+                                <th className="style-center">Chọn </th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td  className="style-center">3</td>
-                                <td  className="style-center">80</td>
-                                <td  className="style-center">45</td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-                                <td  className="style-center">3</td>
-                                <td>308G2</td>
-                                <td  className="style-center"><img src={iconCheck}/> </td>
-                            </tr>
-                            <tr>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td  className="style-center">3</td>
-                                <td  className="style-center">80</td>
-                                <td  className="style-center">45</td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-                                <td  className="style-center">3</td>
-                                <td>308G2</td>
-                                <td  className="style-center"><img src={iconCheck}/> </td>
-                            </tr>
-                            <tr>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td  className="style-center">3</td>
-                                <td  className="style-center">80</td>
-                                <td  className="style-center">45</td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-                                <td  className="style-center">3</td>
-                                <td>308G2</td>
-                                <td  className="style-center"><img src={iconCheck}/> </td>
-                            </tr>
-                            <tr>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td  className="style-center">3</td>
-                                <td  className="style-center">80</td>
-                                <td  className="style-center">45</td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-                                <td  className="style-center">3</td>
-                                <td>308G2</td>
-                                <td  className="style-center"><img src={iconCheck}/> </td>
-                            </tr>
-                            <tr>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td  className="style-center">3</td>
-                                <td  className="style-center">80</td>
-                                <td  className="style-center">45</td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-                                <td  className="style-center">3</td>
-                                <td>308G2</td>
-                                <td  className="style-center"><img src={iconCheck}/> </td>
-                            </tr>
-                            <tr>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td>3</td>
-                                <td>80</td>
-                                <td>45</td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-                                <td>3</td>
-                                <td>308G2</td>
-                                <td><img src={iconCheck}/> </td>
-                            </tr>
-
-                            <tr>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td>3</td>
-                                <td>80</td>
-                                <td>45</td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-                                <td>3</td>
-                                <td>308G2</td>
-                                <td><img src={iconCheck}/></td>
-                            </tr>
-                            <tr>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td>3</td>
-                                <td>80</td>
-                                <td>45</td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-                                <td>3</td>
-                                <td>308G2</td>
-                                <td><img src={iconUncheck}/></td>
-                            </tr>
+                            {
+                                (this.state.exams || []).map((e, index)=>{
+                                    return(
+                                        <tr key={index}>
+                                            <td>{e.id_course}</td>
+                                            <td>{e.course_name}</td>
+                                            <td className="style-center">3</td>
+                                            <td className="style-center">{e.maximum_seating}</td>
+                                            <td className="style-center">{e.seated}</td>
+                                            <td>{e.date}</td>
+                                            <td>{e.time_start}</td>
+                                            <td>{e.location}</td>
+                                            <td className="style-center" onClick={() => this.selectCourse(index)}>
+                                                    <i className="far fa-square "></i>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            }
                             </tbody>
                         </table>
                     </div>
@@ -147,43 +96,26 @@ class RegisterCourses extends React.Component{
                                 <th>Ca thi </th>
                                 <th>Phòng thi </th>
                                 <th>SBD </th>
-                                <th>Hủy đăng kí </th>
+                                <th className="style-center">Hủy đăng kí </th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-                                <td>3</td>
-                                <td>308G2</td>
-                                <td>1</td>
-                                <td><img src={iconBin}/></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-                                <td>3</td>
-                                <td>308G2</td>
-                                <td>1</td>
-                                <td><img src={iconBin}/></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-                                <td>3</td>
-                                <td>308G2</td>
-                                <td>1</td>
-                                <td><img src={iconBin}/></td>
-                            </tr>
+                            {
+                                (this.state.examRegisters || []).map((e, index) =>{
+                                    return (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{e.id_course}</td>
+                                            <td>{e.course_name}</td>
+                                            <td>{e.date}</td>
+                                            <td>{e.time_start}</td>
+                                            <td>{e.location}</td>
+                                            <td>{index}</td>
+                                            <td className="style-center" style={{color:"red"}}><i className="fas fa-trash-alt"></i></td>
+                                        </tr>
+                                    );
+                                })
+                            }
                             </tbody>
                         </table>
                     </div>

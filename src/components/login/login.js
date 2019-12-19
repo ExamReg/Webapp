@@ -1,7 +1,8 @@
 import React from 'react';
 import "./style.css";
-import logo from "../home/icons/logo-uet2.png";
+import logo from "../header/icons/logo-uet2.png";
 import {login} from "../../api/authentication-api";
+import {notification} from "../../utils/noti";
 
 class Login extends React.Component{
     constructor()
@@ -25,21 +26,21 @@ class Login extends React.Component{
     async handleLogin()
     {
         let {username, password} = this.state;
-        let data = {
-            user_name:username,
-            password:password
+        if(username && password) {
+            let data = {
+                user_name: username,
+                password: password
+            }
+            const response = await login(data);
+            if (response.success) {
+                console.log(response)
+                localStorage.setItem("token", response.data.token);
+                this.setState({login: true})
+            } else {
+                notification("error", response.message)
+            }
         }
-        const response = await login(data);
-        if(response.success)
-        {
-            console.log(response)
-            localStorage.setItem("token", response.data.token);
-            this.setState({login:true})
-        }
-        else
-        {
-            console.log("fail login");
-        }
+        else notification("warning", "Xin điền đủ thông tin")
     }
     render() {
         if(this.state.login)

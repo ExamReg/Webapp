@@ -1,16 +1,14 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import './App.css';
 import {Route, Switch, Redirect} from "react-router-dom"
 import {APP_ROUTER} from "./config/app-router";
-
+import {ToastContainer} from "react-toastify";
+import '@fortawesome/fontawesome-free/css/all.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-    if(window.location.pathname === "/") {
-        window.location.replace("/login");
-    }
-    else {
-        return (
-            <div>
+    return (
+            <Fragment>
                 <Switch>
                     {
                         APP_ROUTER.map((route, index) => {
@@ -27,17 +25,20 @@ function App() {
                             );
                         })
                     }
+                    <Redirect to="/home"/>
                 </Switch>
-            </div>
-        );
-    }
+                <ToastContainer/>
+            </Fragment>
+    );
 }
 
 function checkAuthen(component) {
     return localStorage.getItem("token") ? component : () => <Redirect to='/login'/>
 }
+
 function checkUnAuthen(component) {
     return !localStorage.getItem("token") ? component : () => <Redirect to='/home'/>
 
 }
+
 export default App;

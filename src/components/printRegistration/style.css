@@ -93,16 +93,21 @@
 .tbl-print  .header-tbl-print  .name-tbl-print.date{
     margin-bottom: 40px;
 }
-.tbl-print  .header-tbl-print  .student-info{
+.header-tbl-print  .student-info{
 
     margin-bottom: 20px;
 }
-.tbl-print  .header-tbl-print  .student-info div{
-    margin-bottom: 5px;
+ .header-tbl-print  .student-info dl{
+    display:flex;
+    align-items:center
 }
-.tbl-print  .header-tbl-print  .student-info div span{
-    margin-left: 10px;
+ .header-tbl-print  .student-info dt{
+    margin-right: 20px;
+}
+  .header-tbl-print  .student-info dd{
     font-weight: bold;
+    color: #333333;
+    margin-right:80px;
 }
 
 .tbl-print  .header-tbl-print  .name-tbl-print {

@@ -14,17 +14,17 @@ class MenuBar extends React.Component {
             menuItems: [
                 {
                 title: "Quản lý môn học  ",
-                    name:"resultStudy",
+                    name:"fas fa-home",
                     route: this.pathHomeStudy
                 },
                 {
                     title: "Đăng kí thi ",
-                    name:"register",
+                    name:"fas fa-user",
                     route: this.pathHomeRegister
                 },
                 {
                     title :"In lịch thi ",
-                    name:"print",
+                    name:"fas fa-print",
                     route: this.pathHomePrint
                 }
                 ]

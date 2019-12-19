@@ -49,15 +49,14 @@
     position: sticky;
     top:-1px;
     height: 30px;
-    border: 1px solid #333333;
-    background-color: #1b548b;
-    color: #fff;
+    border: 1px solid #cccccc;
+    background-color: #f3f3f3;
     font-size: 15px;
 }
 .tbl-study .body-tbl-study td{
     height: 30px;
     text-align: center;
-    border: 1px solid #333333;
+    border: 1px solid #cccccc;
     font-size: 15px;
 }
 .tbl-study .body-tbl-study tr:nth-child(even)
@@ -68,13 +67,18 @@
 
 .container-study .tbl-study  .header-tbl-study  .student-info{
 
+    margin-top: 30px;
     margin-bottom: 20px;
 }
-.container-study .tbl-study  .header-tbl-study  .student-info div{
-    margin-bottom: 5px;
+.container-study .tbl-study  .header-tbl-study  .student-info dl{
+    display:flex;
+    align-items:center
 }
-.container-study .tbl-study  .header-tbl-study  .student-info div span{
-    margin-left: 10px;
+.container-study .tbl-study  .header-tbl-study  .student-info dt{
+    margin-right: 20px;
+}
+.container-study .tbl-study  .header-tbl-study  .student-info dd{
     font-weight: bold;
     color: #333333;
+    margin-right:100px;
 }

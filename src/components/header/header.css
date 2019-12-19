@@ -1,0 +1,107 @@
+/*HEADER*/
+.container-home .header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    box-shadow: 0 1px 10px rgba(0,0,0,.1);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.container-home .header .group-title{
+    display: flex;
+    align-items: center;
+}
+.container-home .header .group-title .logo{
+    height: 80px;
+    width: 80px;
+    margin-right: 10px;
+}
+.container-home .header .group-title .title{
+    font-size: 30px;
+    color: #1b548b;
+    font-family: "Times New Roman";
+}
+.container-home .header .group-user-menu{
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+}
+.group-user-menu .user-info{
+    border: 1px solid #1b548b;
+
+    background-color: #1b548b;
+    color: #fff;
+    padding: 10px 10px;
+    height: 16px;
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/*dropdown menu*/
+.dropbtn {
+    border: 1px solid #1b548b;
+    background-color: #1b548b;
+    color: #fff;
+    padding: 10px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    right:0px;
+    position: absolute;
+    background-color: #f2f2f2;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+
+.dropdown-content .btn-logout {
+    cursor: pointer;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+.dropdown-content .btn-logout:hover {
+    background-color: #1b548b;
+    color: white;
+}
+
+.dropdown-content .btn-user {
+    cursor: pointer;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+.dropdown-content .btn-user i, .btn-logout i{
+    margin-right: 5px;
+}
+
+.dropdown-content .btn-user:hover {
+    background-color: #1b548b;
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #1b548b;
+}
