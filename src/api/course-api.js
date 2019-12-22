@@ -1,6 +1,6 @@
 import {sendGetRequest} from "./api-sender";
 
 export function getListExam() {
-    let route = "/exams";
+    let route = "/exams?id_semester=8";
     return sendGetRequest(route);
 }
