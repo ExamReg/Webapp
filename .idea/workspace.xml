@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94caa515-3f2f-4f64-9cd0-8131c0ae00d9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/student_app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
-    <ignored path="$PROJECT_DIR$/.tmp/" />
-    <ignored path="$PROJECT_DIR$/temp/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
@@ -41,12 +36,13 @@
       </file>
     </leaf>
   </component>
+=======
+>>>>>>> b91502ca3cd9c19980b4b62c4875f1e7a9c23408
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -56,63 +52,15 @@
       <find>register</find>
       <find>home</find>
       <find>study</find>
-      <find>className</find>
-      <find>print</find>
     </findStrings>
     <replaceStrings>
       <replace>register</replace>
       <replace>login</replace>
       <replace>print</replace>
-      <replace>class</replace>
-      <replace>study</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/package-lock.json" />
-        <option value="$PROJECT_DIR$/src/components/register/register.js" />
-        <option value="$PROJECT_DIR$/src/components/register/style.css" />
-        <option value="$PROJECT_DIR$/src/App.css" />
-        <option value="$PROJECT_DIR$/src/components/menubar/style.css" />
-        <option value="$PROJECT_DIR$/src/components/login/style.css" />
-        <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/config/config.js" />
-        <option value="$PROJECT_DIR$/config/app-router.js" />
-        <option value="$PROJECT_DIR$/src/components/dashboard/dashboard.js" />
-        <option value="$PROJECT_DIR$/src/components/dashboard/style.css" />
-        <option value="$PROJECT_DIR$/src/index.css" />
-        <option value="$PROJECT_DIR$/src/config/home-router.js" />
-        <option value="$PROJECT_DIR$/src/config/app-router.js" />
-        <option value="$PROJECT_DIR$/src/components/modal/style.css" />
-        <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/src/api/api-sender.js" />
-        <option value="$PROJECT_DIR$/src/api/authentication-api.js" />
-        <option value="$PROJECT_DIR$/public/lichthi.html" />
-        <option value="$PROJECT_DIR$/src/api/semester.js" />
-        <option value="$PROJECT_DIR$/src/api/semester-api.js" />
-        <option value="$PROJECT_DIR$/src/components/header/header.js" />
-        <option value="$PROJECT_DIR$/src/components/menubar/menubar.js" />
-        <option value="$PROJECT_DIR$/src/components/menuitem/menuitem.js" />
-        <option value="$PROJECT_DIR$/src/components/menuitem/style.css" />
-        <option value="$PROJECT_DIR$/src/components/header/header.css" />
-        <option value="$PROJECT_DIR$/src/components/login/login.js" />
-        <option value="$PROJECT_DIR$/src/api/course-api.js" />
-        <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/components/home/home.js" />
-        <option value="$PROJECT_DIR$/src/components/registerCourses/registerCourses.js" />
-        <option value="$PROJECT_DIR$/src/components/registerCourses/style.css" />
-        <option value="$PROJECT_DIR$/src/components/resultStudy/style.css" />
-        <option value="$PROJECT_DIR$/src/components/printRegistration/style.css" />
-        <option value="$PROJECT_DIR$/src/components/resultStudy/resultStudy.js" />
-        <option value="$PROJECT_DIR$/src/components/home/style.css" />
-        <option value="$PROJECT_DIR$/src/components/printRegistration/printRegistration.js" />
-      </list>
-    </option>
   </component>
   <component name="ProjectConfigurationFiles">
     <option name="files">
@@ -130,9 +78,11 @@
     <option name="width" value="637" />
     <option name="height" value="740" />
   </component>
+  <component name="ProjectId" id="1UzDaT0hayugFTVpWXIvrC5dGnr" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -249,11 +199,12 @@
       </pane>
     </panes>
   </component>
+=======
+>>>>>>> b91502ca3cd9c19980b4b62c4875f1e7a9c23408
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -262,17 +213,16 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/utils" />
-      <recent name="$PROJECT_DIR$/src/components/printRegistration/icons" />
-      <recent name="$PROJECT_DIR$/src/components/home/icons" />
-      <recent name="$PROJECT_DIR$/public" />
-      <recent name="$PROJECT_DIR$/src/components" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components/header/icons" />
       <recent name="$PROJECT_DIR$/src/components/registerCourses/icons" />
       <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/components/home/icons" />
+      <recent name="$PROJECT_DIR$/src/components/printRegistration/icons" />
+      <recent name="$PROJECT_DIR$/src/components/registerCourses/icons" />
+      <recent name="$PROJECT_DIR$/src/components/menuitem/icons" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -317,6 +267,7 @@
       <workItem from="1575818444374" duration="3938000" />
       <workItem from="1575853330604" duration="23771000" />
       <workItem from="1575965402068" duration="5297000" />
+<<<<<<< HEAD
       <workItem from="1575971193138" duration="6871000" />
       <workItem from="1576047034480" duration="12456000" />
       <workItem from="1576288246443" duration="10228000" />
@@ -681,5 +632,28 @@
         </state>
       </provider>
     </entry>
+=======
+      <workItem from="1575971193138" duration="6066000" />
+      <workItem from="1576350596852" duration="380000" />
+      <workItem from="1576777749823" duration="1584000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+>>>>>>> b91502ca3cd9c19980b4b62c4875f1e7a9c23408
   </component>
 </project>

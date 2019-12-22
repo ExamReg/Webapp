@@ -1,34 +1,47 @@
 import React from "react"
 import "./style.css"
 import {getListExam} from "../../api/course-api";
+import moment from "moment"
 
-class RegisterCourses extends React.Component{
-    constructor(props)
-    {
+class RegisterCourses extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
-            exams:[],
-            examRegisters:[]
-        }
+            exams: [],
+            examRegisters: [],
+            checkSelect: false,
+            imgIcon: "far fas-square"
+        };
         this.getListExam = this.getListExam.bind(this);
         this.selectCourse = this.selectCourse.bind(this);
     }
-    async getListExam()
-    {
+
+    async getListExam() {
         const res = await getListExam();
-        if(res.success)
-        {
+        if (res.success) {
             this.setState({exams: res.data.exams})
-        }
-        else
-        {
+        } else {
             console.log(res.message);
         }
     }
-    selectCourse(index)
-    {
-        console.log(index)
-    }
+
+    selectCourse = (idCs, nameCs, times, timee, room, sbd) => {
+        this.setState({check: true});
+        let data = {
+            name_course: nameCs,
+            id_course: idCs,
+            time_start: times,
+            time_end: timee,
+            location: room,
+            sbd: sbd + 1
+        };
+        console.log(data);
+        let arr = this.state.examRegisters;
+        arr.push(data);
+        this.setState({examRegisters: arr})
+
+    };
+
     componentDidMount() {
         this.getListExam();
     }
@@ -36,10 +49,10 @@ class RegisterCourses extends React.Component{
     render() {
         return (
             <div className="container-register">
-                <div className="title-register">Đăng ký thi - Học kì 1 2019-2020 </div>
+                <div className="title-register">Đăng ký thi - Học kì 1 2019-2020</div>
                 <div className="input-find">
                     <input type="text" className="" placeholder="Nhập mã môn học/tên môn học "/>
-                    <button type="button" className="btn-register">Tìm kiếm </button>
+                    <button type="button" className="btn-register">Tìm kiếm</button>
                 </div>
                 <div className="box blue-border">
                     <div className="box-header">Đăng kí lịch thi - Học kì 1 2018-2019</div>
@@ -49,31 +62,29 @@ class RegisterCourses extends React.Component{
                             <tr>
                                 <th>Mã môn học</th>
                                 <th>Tên môn học</th>
-                                <th className="style-center">TC</th>
                                 <th className="style-center">Tổng SV</th>
                                 <th className="style-center">Đã ĐK</th>
-                                <th>Ngày thi </th>
-                                <th>Giờ thi </th>
-                                <th>Phòng thi </th>
-                                <th className="style-center">Chọn </th>
+                                <th>Bắt đầu</th>
+                                <th>Kết thúc</th>
+                                <th>Phòng thi</th>
+                                <th className="style-center">Chọn</th>
                             </tr>
                             </thead>
                             <tbody>
                             {
-                                (this.state.exams || []).map((e, index)=>{
-                                    return(
+                                (this.state.exams || []).map((e, index) => {
+                                    return (
                                         <tr key={index}>
                                             <td>{e.id_course}</td>
                                             <td>{e.course_name}</td>
-                                            <td className="style-center">3</td>
                                             <td className="style-center">{e.maximum_seating}</td>
                                             <td className="style-center">{e.seated}</td>
-                                            <td>{e.date}</td>
-                                            <td>{e.time_start}</td>
+                                            <td>{moment(parseInt(e.time_start)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
+                                            <td>{moment(parseInt(e.time_end)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
                                             <td>{e.location}</td>
-                                            <td className="style-center" onClick={() => this.selectCourse(index)}>
-                                                    <i className="far fa-square "></i>
+                                            <td>
                                             </td>
+
                                         </tr>
                                     );
                                 })
@@ -91,27 +102,29 @@ class RegisterCourses extends React.Component{
                                 <th>STT</th>
                                 <th>Mã môn học</th>
                                 <th>Tên môn học</th>
-                                <th>Ngày thi </th>
-                                <th>Giờ thi </th>
-                                <th>Ca thi </th>
-                                <th>Phòng thi </th>
-                                <th>SBD </th>
-                                <th className="style-center">Hủy đăng kí </th>
+                                <th>Bắt đầu</th>
+                                <th>Kết thúc</th>
+                                <th>Phòng thi</th>
+                                <th>SBD</th>
+                                <th className="style-center">Hủy đăng kí</th>
                             </tr>
                             </thead>
                             <tbody>
                             {
-                                (this.state.examRegisters || []).map((e, index) =>{
+
+                                (this.state.examRegisters).map((e, index) => {
                                     return (
                                         <tr key={index}>
                                             <td>{index + 1}</td>
                                             <td>{e.id_course}</td>
-                                            <td>{e.course_name}</td>
-                                            <td>{e.date}</td>
-                                            <td>{e.time_start}</td>
+                                            <td>{e.name_course}</td>
+                                            <td>{moment(parseInt(e.time_start)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
+                                            <td>{moment(parseInt(e.time_end)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
                                             <td>{e.location}</td>
-                                            <td>{index}</td>
-                                            <td className="style-center" style={{color:"red"}}><i className="fas fa-trash-alt"></i></td>
+                                            <td>{e.sbd}</td>
+                                            <td className="style-center" style={{color: "red"}}>
+                                                <i className="fas fa-trash-alt"></i>
+                                            </td>
                                         </tr>
                                     );
                                 })
@@ -122,9 +135,10 @@ class RegisterCourses extends React.Component{
                 </div>
                 <div className="footer-register">
                     <div>Tổng số môn đã đăng kí: [3]</div>
-                    <button className="btn-register">Lưu thay đổi </button>
+                    <button className="btn-register">Lưu thay đổi</button>
                 </div>
             </div>);
     }
 }
+
 export default RegisterCourses;

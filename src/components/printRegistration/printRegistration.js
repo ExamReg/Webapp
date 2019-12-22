@@ -24,6 +24,10 @@ class PrintRegistration extends React.Component{
             console.log(res.message)
         }
     }
+
+    printScreen = () => {
+      window.print();
+    };
     componentDidMount() {
         this.getInfoUser();
     }
@@ -38,7 +42,7 @@ class PrintRegistration extends React.Component{
                 <div className="title-print ">
                     Lịch thi
                 </div>
-                <button className="btn-print">
+                <button className="btn-print" onClick={this.printScreen}>
                     <span className="icon-print"> </span>
                     In kết quả
                 </button>
