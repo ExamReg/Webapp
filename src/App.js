@@ -5,7 +5,9 @@ import {APP_ROUTER} from "./config/app-router";
 import {ToastContainer} from "react-toastify";
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'react-toastify/dist/ReactToastify.css';
+import Redirector from "./utils/redirector";
 
+//ComponentDidMount -> register event from authen-service, call back la this.forceUpdate()
 function App() {
     return (
             <Fragment>
@@ -26,6 +28,7 @@ function App() {
                         })
                     }
                     <Redirect to="/home"/>
+                    <Redirector/>
                 </Switch>
                 <ToastContainer/>
             </Fragment>
