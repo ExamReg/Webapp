@@ -2,9 +2,10 @@ import React from "react"
 import "./style.css"
 import {getUserInfo} from "../../api/authentication-api";
 import {getSemesters} from "../../api/semester-api";
-import {getListExamRegisted} from "../../api/course-api";
+import {getFile, getListExamRegisted} from "../../api/course-api";
 import {notification} from "../../utils/noti";
 import moment from "moment";
+const URL_BASE = process.env.REACT_APP_API_URL;
 
 class PrintRegistration extends React.Component{
     constructor(props)
@@ -16,7 +17,7 @@ class PrintRegistration extends React.Component{
             birthday:"",
 
             semesters:[],
-            idSemester:"0",
+            idSemester:"",
 
             examsRegistered: [],
             numberSubjectRegisted: ""
@@ -44,25 +45,41 @@ class PrintRegistration extends React.Component{
     }
     getListExamRegisted = async () => {
         const {idSemester} = this.state;
-
-        const res = await getListExamRegisted(idSemester);
-        if (res.success) {
-            this.setState({
-                examsRegistered: res.data.exams,
-                numberSubjectRegisted: res.data.exams.length
-            })
-        } else {
-            notification("error", res.message);
+        if(idSemester){
+            const res = await getListExamRegisted(idSemester);
+            if (res.success) {
+                this.setState({
+                    examsRegistered: res.data.exams,
+                    numberSubjectRegisted: res.data.exams.length
+                })
+            } else {
+                notification("error", res.message);
+            }
         }
     };
     selectSemester = (event) => {
         const idSems = event.target[event.target.selectedIndex].value;
         this.setState({idSemester: idSems});
-    }
-    printScreen = () => {
-      window.print();
     };
-
+    printScreen = async () => {
+        if(!this.state.idSemester){
+            notification("warning", "Vui lòng chọn một kì học.")
+        }else{
+            let res = await getFile(this.state.idSemester);
+                if(res.success)
+                {
+                    let a_tag = document.createElement('a');
+                    let href = URL_BASE + "/static/" + res.data.file_name;
+                    a_tag.setAttribute('target', '_blank');
+                    a_tag.setAttribute('href', href);
+                    a_tag.click();
+                }
+                else
+                {
+                    notification("error", res.message);
+                }
+        }
+    };
 
     componentDidMount() {
         this.getInfoUser();
@@ -107,7 +124,7 @@ class PrintRegistration extends React.Component{
                 </div>
 
                 {
-                    this.state.idSemester === "0"
+                    this.state.idSemester === ""
                     ? <div><i>Bạn chưa chọn học kỳ!</i></div>
                     : <div className="tbl-print ">
                             <div className="title-form">

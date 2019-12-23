@@ -17,3 +17,8 @@ export function saveChange(id_semester, data) {
     let route = `/exams?id_semester=${id_semester}`;
     return sendPutRequest(route, data)
 }
+
+export function getFile(id_semester) {
+    let route = `/exams/print?id_semester=${id_semester}`;
+    return sendGetRequest(route);
+}
