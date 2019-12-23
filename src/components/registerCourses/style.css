@@ -6,9 +6,52 @@
     left: 0;
     bottom: 0;
 }
+/*CLAIM*/
+.container-claim{
+    font-size: 15px;
+    position: absolute;
+    font-family: "Times New Roman";
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+.container-claim .content-claim{
+    background-color: #fcc;
+    padding: 20px 10px;
+    color: red;
+
+}
+.container-claim .header-register
+{
+    margin-bottom: 10px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;;
+
+}
+.container-claim .title-register{
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+.container-claim .time-register{
+    color: #333333;
+    font-size: 14px;
+}
 /*HEADER*/
+.container-register .header-register
+{
+    margin-bottom: 10px;
+}
     .container-register .title-register{
         font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    .container-register .time-register{
+        color: #333333;
+        font-size: 14px;
     }
     .container-register .input-find{
         justify-content: flex-end;
@@ -24,6 +67,9 @@
             border: 1px solid #1b548b;
         }
 /*BODY*/
+.container-register .body-register{
+
+}
 .container-register .box{
     margin-bottom: 10px;
 }
@@ -37,7 +83,7 @@
 
 }
 .container-register .box.blue-border .box-content{
-    max-height: 350px;
+    max-height: calc((100vh - 250px)/2);
     overflow: auto;
 }
 .container-register .box.blue-border .box-content table{
@@ -49,17 +95,17 @@
     color: #000;
     border: 1px solid #bfbfbf;
     top:-1px;
-    height: 50px;
+    height: 20px;
     text-align: left;
     padding: 8px;
 }
 .container-register .box.blue-border .box-content td{
     font-size: 13px;
-    height: 20px;
+    height: 15px;
     border: 1px solid #bfbfbf;
     padding: 8px;
 }
-.container-register .box.blue-border .box-content tr:hover{
+.container-register .box.blue-border .box-content tr:hover td{
     background-color: #dfdfdf;
 }
 
@@ -72,7 +118,7 @@
     color: #fff;
 }
 .container-register .box.green-border .box-content{
-    max-height: 350px;
+    max-height: calc((100vh - 250px)/2);
     overflow: auto;
 }
 .container-register .box.green-border .box-content table{
@@ -84,28 +130,27 @@
     color: #000;
     border: 1px solid #bfbfbf;
     top:-1px;
-    height: 50px;
+    height: 20px;
     text-align: left;
     padding: 8px;
 }
 .container-register .box.green-border .box-content td{
     font-size: 13px;
-    height: 20px;
+    height: 15px;
     border: 1px solid #bfbfbf;
     background-color: #fcc;
     padding: 8px;
 }
-.container-register .box.green-border .box-content tr:hover{
-    background-color: #fff;
+.container-register .box.green-border .box-content tr:hover td{
+    background-color: #dfdfdf;
+
 }
-.container-register .style-center{
-    text-align: center !important;
-}
+
 /*footer*/
-.container-register  .footer-register{
+.container-register  .body-register .footer-register{
     display: flex;
     justify-content: space-between;
-    margin:20px 0px;
+    margin-top: 10px;
 }
     .container-register .btn-register{
         border: 1px solid #1b548b;
@@ -114,4 +159,26 @@
         height: 30px;
         border-radius: 3px;
         margin-left: 10px;
+        cursor: pointer;
     }
+
+
+.container-register .style-center{
+    text-align: center !important;
+}
+.container-register .btn-delete {
+    color: #fff;
+    background-color: #ff3333;
+    border: 1px solid #ff3333;
+    cursor:pointer;
+    border-radius: 3px;
+    padding: 2px 5px;
+}
+.container-register .btn-tick{
+    border: 1px solid #1b548b;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #1b548b;
+    cursor: pointer;
+    padding: 2px 5px;
+}

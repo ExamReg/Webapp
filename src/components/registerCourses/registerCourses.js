@@ -1,54 +1,51 @@
 import React from "react"
 import "./style.css"
-import {getListExam, getListExamRegisted, getListSubjectStudentStudy} from "../../api/course-api";
+import {getListExam, getListExamRegisted, getNewEastSemster, saveChange} from "../../api/course-api";
 import moment from "moment"
 import {notification} from "../../utils/noti";
-import {getSemesters} from "../../api/semester-api";
+
 
 class RegisterCourses extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            exams: [{
-                is_check: true
-            },{
-                is_check: false
-            }],
+            exams: [],
             examsRegistered: [],
-            subjectsStudentStudy: [],
+
+
             idCurrentSemester: "",
             currentSemester: "",
+            timeStartRegister: "",
+            timeEndRegister: "",
 
             numberSubjectRegisted: "",
 
             imgIcon: "far fa-square",
-            toggleUnCheck: false
+            toggleCheck: false,
+            checkOutRegister: false
+
         };
 
     }
 
-    getListSubjectStudentStudy = async () => {
-        const res = await getListSubjectStudentStudy();
+
+    getCurrentSemester = async () => {
+        const res = await getNewEastSemster();
         if (res.success) {
-            this.setState({subjectsStudentStudy: res.data.courses});
+            const data = res.data.semester;
+            this.setState({
+                idCurrentSemester: data.id_semester,
+                currentSemester: data.value,
+                timeStartRegister: moment(parseInt(data.register_from)).utcOffset(420).format("YYYY/MM/DD HH:mm"),
+                timeEndRegister: moment(parseInt(data.register_to)).utcOffset(420).format("YYYY/MM/DD HH:mm"),
+            })
         } else {
             notification("error", res.message);
         }
     };
-    getCurrentSemester = async () => {
-        const res1 = await getSemesters();
-        if (res1.success) {
-            let nSemester = res1.data.semesters.length;
-            this.setState({
-                idCurrentSemester: res1.data.semesters[nSemester - 1].id_semester,
-                currentSemester: res1.data.semesters[nSemester - 1].value
-            })
-        } else {
-            console.log(res1.message);
-        }
-    };
     getListExam = async () => {
-        const res = await getListExam();
+        const {idCurrentSemester} = this.state;
+        const res = await getListExam(idCurrentSemester);
         if (res.success) {
             this.setState({exams: res.data.exams})
         } else {
@@ -68,177 +65,249 @@ class RegisterCourses extends React.Component {
         }
     };
 
-    handleChangeButtonCheck = (idCs, nameCs, times, timee, room) => {
+    handleClickSelectExam = (id_cs, id_slot, id_course, course_name, time_start, time_end, location) => {
         let data = {
-            id_course: idCs,
-            name_course: nameCs,
-            time_start: times,
-            time_end: timee,
-            location: room,
+            id_course: id_course,
+            course_name: course_name,
+            time_start: time_start,
+            time_end: time_end,
+            location: location,
+            id_cs: id_cs,
+            id_slot: id_slot
         };
         let arr = this.state.examsRegistered;
         arr.push(data);
+
         this.setState({
             examsRegistered: arr,
-            imgIcon: this.state.imgIcon==="far fa-check-square" ? "far fa-square" :"far fa-check-square"
+            toggleCheck: true
         });
 
+        notification("info", "Môn học chỉ được chấp nhận khi bạn ấn lưu thay đổi")
+    };
 
+    handleClickButtonDelete = (id_slot) => {
+        let arr = this.state.examsRegistered;
+
+        arr.splice(arr.findIndex(e => e.id_slot === id_slot), 1);
+
+        this.setState({
+            examsRegistered: arr,
+            toggleCheck: true
+        });
+        notification("info", "Môn học chỉ được chấp nhận khi bạn ấn lưu thay đổi")
 
     };
 
-   /* checkReturnButton = (row) =>{
-        if(row.seated >= row.maximum_seating || row.is_eligible) {
+    checkReturnButton = (maximum_seating, seated, is_eligible, id_cs
+        , id_slot, id_course, course_name, time_start, time_end, location) => {
+
+        const {examsRegistered} = this.state;
+        if (maximum_seating <= seated || is_eligible === 0) {
             return "";
-        }else{
-            for(let e of this.state.examsRegistered){
-                if(e.id_cs === row.id_cs){
+        } else {
+            for (let e of examsRegistered) {
+                if (e.id_cs === id_cs) {
                     return "";
                 }
             }
-            return <button></button>
+            return <button className="btn-tick"
+                           onClick={() => this.handleClickSelectExam(id_cs, id_slot, id_course, course_name, time_start, time_end, location)}>
+                Chọn
+            </button>;
+        }
+    };
+    handleSaveChange = async () => {
+        const {idCurrentSemester, examsRegistered} = this.state;
+
+        let slota = [];
+        for (let e of examsRegistered) {
+            slota.push({id_slot: e.id_slot});
+        }
+
+        let data = {
+            slots: slota
+        };
+
+        const res = await saveChange(idCurrentSemester, data);
+        if (res.success) {
+            notification("success", "Ghi nhận thành công");
+            this.setState({
+                toggleCheck: true,
+                numberSubjectRegisted: examsRegistered.length
+            })
+        } else {
+            notification("error", res.message)
         }
     };
 
+    async componentDidMount() {
 
-    toggleButtonCheck = () =>{
+        const resS = await getNewEastSemster();
+        if (resS.success) {
+            const data = resS.data.semester;
+
+            let date = Date.now();
+
+            if (parseInt(date) >= parseInt(data.register_from) && parseInt(date) <= parseInt(data.register_to)) {
+                const resE = await getListExam(data.id_semester);
+                const resERegisted = await getListExamRegisted(data.id_semester);
+
+                if (resE.success && resERegisted.success) {
+                    this.setState({
+                        idCurrentSemester: data.id_semester,
+                        currentSemester: data.value,
+                        timeStartRegister: moment(parseInt(data.register_from)).utcOffset(420).format("YYYY/MM/DD HH:mm"),
+                        timeEndRegister: moment(parseInt(data.register_to)).utcOffset(420).format("YYYY/MM/DD HH:mm"),
+
+                        exams: resE.data.exams,
+
+                        examsRegistered: resERegisted.data.exams,
+                        numberSubjectRegisted: resERegisted.data.exams.length
+                    })
+                } else {
+                    notification("error", resE.message);
+                    notification("error", resERegisted.message);
+                }
+            } else {
+                this.setState({
+                    checkOutRegister: true,
+                    idCurrentSemester: data.id_semester,
+                    currentSemester: data.value,
+                    timeStartRegister: moment(parseInt(data.register_from)).utcOffset(420).format("YYYY/MM/DD HH:mm"),
+                    timeEndRegister: moment(parseInt(data.register_to)).utcOffset(420).format("YYYY/MM/DD HH:mm"),
+                })
+            }
+        } else {
+            notification("error", resS.message);
+        }
 
     }
-*/
-    checkTypeButtonWhenSelect = (maxN, seated, idCourse, id_cs, times, timee, room, cs_name) => {
-        const {subjectsStudentStudy, examsRegistered} = this.state;
-        if (maxN > seated) {
-            let checkEligible = false;
-            let checkExist = false;
-            for (let i = 0; i < subjectsStudentStudy.length; i++) {
-                if (subjectsStudentStudy[i].id_course === idCourse && subjectsStudentStudy[i].is_eligible === 1) {
-                    checkEligible = true;
-                    break;
-                }
-            }
-            if (checkEligible) {
-                for (let i = 0; i < examsRegistered.length; i++) {
-                    if (examsRegistered[i].id_cs === id_cs) {
-                        checkExist = true;
-                        break;
-                    }
-                }
-                if (checkExist) {
-                    return (
-                    <button onClick={() =>
-                        this.handleChangeButtonCheck(idCourse,cs_name,times, timee, room)
-                    }>
 
-                    </button>);
-
-                } else
-                    return "";
-
-            } else
-                return "";
-        } else
-            return "";
-    };
-
-    componentDidMount() {
-        this.getCurrentSemester();
-        this.getListExam();
-        this.getListExamRegisted();
-        this.getListSubjectStudentStudy();
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.state.toggleCheck) {
+            this.setState({
+                toggleCheck: false,
+            });
+            this.getListExam();
+        }
     }
 
     render() {
         return (
-            <div className="container-register">
-                <div className="title-register">Đăng ký thi - {this.state.currentSemester}</div>
-                <div className="input-find">
-                    <input type="text" className="" placeholder="Nhập mã môn học/tên môn học "/>
-                    <button type="button" className="btn-register">Tìm kiếm</button>
-                </div>
-                <div className="box blue-border">
-                    <div className="box-header">Đăng kí lịch thi - {this.state.currentSemester}</div>
-                    <div className="box-content">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Mã môn học</th>
-                                <th>Tên môn học</th>
-                                <th className="style-center">Tổng SV</th>
-                                <th className="style-center">Đã ĐK</th>
-                                <th>Bắt đầu</th>
-                                <th>Kết thúc</th>
-                                <th>Phòng thi</th>
-                                <th className="style-center">Chọn</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {
-                                (this.state.exams || []).map((e, index) => {
-                                    return (
-                                        <tr key={index}>
-                                            <td>{e.id_course}</td>
-                                            <td>{e.course_name}</td>
-                                            <td className="style-center">{e.maximum_seating}</td>
-                                            <td className="style-center">{e.seated}</td>
-                                            <td>{moment(parseInt(e.time_start)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
-                                            <td>{moment(parseInt(e.time_end)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
-                                            <td>{e.location}</td>
-                                            <td>
-                                                {this.checkTypeButtonWhenSelect(e.maximum_seating,e.seated, e.id_course,
-                                                    e.id_cs,parseInt(e.time_start),parseInt(e.time_end), e.location, e.course_name )}
-                                            </td>
-
-                                        </tr>
-                                    );
-                                })
-                            }
-                            </tbody>
-                        </table>
+            this.state.checkOutRegister
+                ? <div className="container-claim">
+                    <div className="header-register">
+                        <div className="title-register">Đăng ký thi - {this.state.currentSemester}</div>
+                        <i className="time-register">Thời gian đăng ký:
+                            [{this.state.timeStartRegister} - {this.state.timeEndRegister}]</i>
+                    </div>
+                    <h3 className="header-claim">Thông báo </h3>
+                    <div className="content-claim">
+                        <div>Đang khóa đăng ký học, bạn vui lòng thử lại sau!</div>
                     </div>
                 </div>
-                <div className="box green-border">
-                    <div className="box-header">Danh sách môn học đã đăng ký hoặc đã chọn</div>
-                    <div className="box-content">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th className="style-center">STT</th>
-                                <th>Mã môn học</th>
-                                <th>Tên môn học</th>
-                                <th>Bắt đầu</th>
-                                <th>Kết thúc</th>
-                                <th>Phòng thi</th>
-                                <th className="style-center">Hủy đăng kí</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {
+                :
+                <div className="container-register">
+                    <div className="header-register">
+                        <div className="title-register">Đăng ký thi - {this.state.currentSemester}</div>
+                        <i className="time-register">Thời gian đăng ký:
+                            [{this.state.timeStartRegister} - {this.state.timeEndRegister}]</i>
+                    </div>
+                    <div className="body-register">
+                        <div className="box blue-border">
+                            <div className="box-header">Đăng kí lịch thi - {this.state.currentSemester}</div>
+                            <div className="box-content">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Mã môn học</th>
+                                        <th>Tên môn học</th>
+                                        <th className="style-center">Tổng SV</th>
+                                        <th className="style-center">Đã ĐK</th>
+                                        <th>Bắt đầu</th>
+                                        <th>Kết thúc</th>
+                                        <th>Phòng thi</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {
+                                        (this.state.exams || []).map((e, index) => {
+                                            return (
+                                                <tr key={index}>
+                                                    <td>{e.id_course}</td>
+                                                    <td>{e.course_name}</td>
+                                                    <td className="style-center">{e.maximum_seating}</td>
+                                                    <td className="style-center">{e.seated}</td>
+                                                    <td>{moment(parseInt(e.time_start)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
+                                                    <td>{moment(parseInt(e.time_end)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
+                                                    <td>{e.location}</td>
+                                                    <td className="style-center">
+                                                        {this.checkReturnButton(e.maximum_seating, e.seated, e.is_eligible, e.id_cs
+                                                            , e.id_slot, e.id_course, e.course_name, parseInt(e.time_start), parseInt(e.time_end), e.location)}
+                                                    </td>
 
-                                (this.state.examsRegistered).map((e, index) => {
-                                    return (
-                                        <tr key={index}>
-                                            <td className="style-center">{index + 1}</td>
-                                            <td>{e.id_course}</td>
-                                            <td>{e.course_name}</td>
-                                            <td>{moment(parseInt(e.time_start)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
-                                            <td>{moment(parseInt(e.time_end)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
-                                            <td>{e.location}</td>
-                                            <td className="style-center" style={{color: "red"}}>
-                                                <i className="fas fa-trash-alt"></i>
-                                            </td>
-                                        </tr>
-                                    );
-                                })
-                            }
-                            </tbody>
-                        </table>
+                                                </tr>
+                                            );
+                                        })
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div className="box green-border">
+                            <div className="box-header">Danh sách môn thi đã đăng ký hoặc đã chọn</div>
+                            <div className="box-content">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th className="style-center">STT</th>
+                                        <th>Mã môn học</th>
+                                        <th>Tên môn học</th>
+                                        <th>Bắt đầu</th>
+                                        <th>Kết thúc</th>
+                                        <th>Phòng thi</th>
+                                        <th className="style-center">Hủy đăng kí</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {
+                                        this.state.examsRegistered.length === 0
+                                            ? <tr>
+                                                <td colSpan={7}><i>Bạn chưa chọn môn thi nào!</i></td>
+                                            </tr>
+                                            :
+                                            (this.state.examsRegistered).map((e, index) => {
+                                                return (
+                                                    <tr key={index}>
+                                                        <td className="style-center">{index + 1}</td>
+                                                        <td>{e.id_course}</td>
+                                                        <td>{e.course_name}</td>
+                                                        <td>{moment(parseInt(e.time_start)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
+                                                        <td>{moment(parseInt(e.time_end)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
+                                                        <td>{e.location}</td>
+                                                        <td className="style-center">
+                                                            <button className="btn-delete"
+                                                                    onClick={() => this.handleClickButtonDelete(e.id_slot)}>
+                                                                Xóa
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div className="footer-register">
+                            <div>Tổng số môn đã đăng kí: [{this.state.numberSubjectRegisted}]</div>
+                            <button className="btn-register" onClick={this.handleSaveChange}>Lưu thay đổi</button>
+                        </div>
                     </div>
                 </div>
-                <div className="footer-register">
-                    <div>Tổng số môn đã đăng kí: [{this.state.numberSubjectRegisted}]</div>
-                    <button className="btn-register">Lưu thay đổi</button>
-                </div>
-            </div>);
+        )
     }
 }
 
