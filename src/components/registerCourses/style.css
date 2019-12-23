@@ -82,7 +82,7 @@
 
 }
 .container-register .box.blue-border .box-content{
-    max-height: calc((100vh - 270px)/2);
+    max-height: calc((100vh - 300px)/2);
     overflow: auto;
 }
 .container-register .box.blue-border .box-content table{
@@ -117,7 +117,7 @@
     color: #fff;
 }
 .container-register .box.green-border .box-content{
-    max-height: calc((100vh - 270px)/2);
+    max-height: calc((100vh - 400px)/2);
     overflow: auto;
 }
 .container-register .box.green-border .box-content table{

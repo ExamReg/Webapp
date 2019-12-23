@@ -3,6 +3,7 @@ import "./style.css"
 import {getListExam, getListExamRegisted, getNewEastSemster, saveChange} from "../../api/course-api";
 import moment from "moment"
 import {notification} from "../../utils/noti";
+import SpinnerCustom from "../spinnerCustom/spinnerCustom";
 
 
 class RegisterCourses extends React.Component {
@@ -22,8 +23,8 @@ class RegisterCourses extends React.Component {
 
             imgIcon: "far fa-square",
             toggleCheck: false,
-            checkOutRegister: false
-
+            checkOutRegister: false,
+            loading: false
         };
 
     }
@@ -93,7 +94,7 @@ class RegisterCourses extends React.Component {
     };
     handleSaveChange = async () => {
         const {idCurrentSemester, examsRegistered} = this.state;
-
+        this.setState({loading: true});
         let slota = [];
         for (let e of examsRegistered) {
             slota.push({id_slot: e.id_slot});
@@ -108,9 +109,13 @@ class RegisterCourses extends React.Component {
             notification("success", "Ghi nhận thành công");
             this.setState({
                 toggleCheck: true,
-                numberSubjectRegisted: examsRegistered.length
+                numberSubjectRegisted: examsRegistered.length,
+                loading: false
             })
         } else {
+            this.setState({
+                loading: false
+            });
             notification("error", res.message)
         }
     };
@@ -182,105 +187,108 @@ class RegisterCourses extends React.Component {
                     </div>
                 </div>
                 :
-                <div className="container-register">
-                    <div className="header-register">
-                        <div className="title-register">Đăng ký thi - {this.state.currentSemester}</div>
-                        <i className="time-register">Thời gian đăng ký:
-                            [{this.state.timeStartRegister} - {this.state.timeEndRegister}]</i>
-                    </div>
-                    <div className="body-register">
-                        <div className="box blue-border">
-                            <div className="box-header">Đăng kí lịch thi - {this.state.currentSemester}</div>
-                            <div className="box-content">
-                                <table>
-                                    <thead>
-                                    <tr>
-                                        <th>Mã môn học</th>
-                                        <th>Tên môn học</th>
-                                        <th className="style-center">Tổng SV</th>
-                                        <th className="style-center">Đã ĐK</th>
-                                        <th>Bắt đầu</th>
-                                        <th>Kết thúc</th>
-                                        <th>Phòng thi</th>
-                                        <th>Chọn  </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {
-                                        (this.state.exams || []).map((e, index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <td>{e.id_course}</td>
-                                                    <td>{e.course_name}</td>
-                                                    <td className="style-center">{e.maximum_seating}</td>
-                                                    <td className="style-center">{e.seated}</td>
-                                                    <td>{moment(parseInt(e.time_start)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
-                                                    <td>{moment(parseInt(e.time_end)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
-                                                    <td>{e.location}</td>
-                                                    <td className="style-center">
-                                                        {this.checkReturnButton(e.maximum_seating, e.seated, e.is_eligible, e.id_cs
-                                                            , e.id_slot, e.id_course, e.course_name, parseInt(e.time_start), parseInt(e.time_end), e.location)}
-                                                    </td>
-
-                                                </tr>
-                                            );
-                                        })
-                                    }
-                                    </tbody>
-                                </table>
-                            </div>
+                <>
+                    {this.state.loading ? <SpinnerCustom loading={this.state.loading}/> : ""}
+                    <div className="container-register">
+                        <div className="header-register">
+                            <div className="title-register">Đăng ký thi - {this.state.currentSemester}</div>
+                            <i className="time-register">Thời gian đăng ký:
+                                [{this.state.timeStartRegister} - {this.state.timeEndRegister}]</i>
                         </div>
-                        <div className="box green-border">
-                            <div className="box-header">Danh sách môn thi đã đăng ký hoặc đã chọn</div>
-                            <div className="box-content">
-                                <table>
-                                    <thead>
-                                    <tr>
-                                        <th className="style-center">STT</th>
-                                        <th>Mã môn học</th>
-                                        <th>Tên môn học</th>
-                                        <th>Bắt đầu</th>
-                                        <th>Kết thúc</th>
-                                        <th>Phòng thi</th>
-                                        <th className="style-center">Hủy đăng kí</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {
-                                        this.state.examsRegistered.length === 0
-                                            ? <tr>
-                                                <td colSpan={7}><i>Bạn chưa chọn môn thi nào!</i></td>
-                                            </tr>
-                                            :
-                                            (this.state.examsRegistered).map((e, index) => {
+                        <div className="body-register">
+                            <div className="box blue-border">
+                                <div className="box-header">Đăng kí lịch thi - {this.state.currentSemester}</div>
+                                <div className="box-content">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>Mã môn học</th>
+                                            <th>Tên môn học</th>
+                                            <th className="style-center">Tổng SV</th>
+                                            <th className="style-center">Đã ĐK</th>
+                                            <th>Bắt đầu</th>
+                                            <th>Kết thúc</th>
+                                            <th>Phòng thi</th>
+                                            <th>Chọn  </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {
+                                            (this.state.exams || []).map((e, index) => {
                                                 return (
                                                     <tr key={index}>
-                                                        <td className="style-center">{index + 1}</td>
                                                         <td>{e.id_course}</td>
                                                         <td>{e.course_name}</td>
+                                                        <td className="style-center">{e.maximum_seating}</td>
+                                                        <td className="style-center">{e.seated}</td>
                                                         <td>{moment(parseInt(e.time_start)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
                                                         <td>{moment(parseInt(e.time_end)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
                                                         <td>{e.location}</td>
                                                         <td className="style-center">
-                                                            <button className="btn-delete"
-                                                                    onClick={() => this.handleClickButtonDelete(e.id_slot)}>
-                                                                <i className="fas fa-trash-alt"></i>
-                                                            </button>
+                                                            {this.checkReturnButton(e.maximum_seating, e.seated, e.is_eligible, e.id_cs
+                                                                , e.id_slot, e.id_course, e.course_name, parseInt(e.time_start), parseInt(e.time_end), e.location)}
                                                         </td>
+
                                                     </tr>
                                                 );
                                             })
-                                    }
-                                    </tbody>
-                                </table>
+                                        }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div className="box green-border">
+                                <div className="box-header">Danh sách môn thi đã đăng ký hoặc đã chọn</div>
+                                <div className="box-content">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th className="style-center">STT</th>
+                                            <th>Mã môn học</th>
+                                            <th>Tên môn học</th>
+                                            <th>Bắt đầu</th>
+                                            <th>Kết thúc</th>
+                                            <th>Phòng thi</th>
+                                            <th className="style-center">Hủy đăng kí</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {
+                                            this.state.examsRegistered.length === 0
+                                                ? <tr>
+                                                    <td colSpan={7}><i>Bạn chưa chọn môn thi nào!</i></td>
+                                                </tr>
+                                                :
+                                                (this.state.examsRegistered).map((e, index) => {
+                                                    return (
+                                                        <tr key={index}>
+                                                            <td className="style-center">{index + 1}</td>
+                                                            <td>{e.id_course}</td>
+                                                            <td>{e.course_name}</td>
+                                                            <td>{moment(parseInt(e.time_start)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
+                                                            <td>{moment(parseInt(e.time_end)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
+                                                            <td>{e.location}</td>
+                                                            <td className="style-center">
+                                                                <button className="btn-delete"
+                                                                        onClick={() => this.handleClickButtonDelete(e.id_slot)}>
+                                                                    <i className="fas fa-trash-alt"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })
+                                        }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div className="footer-register">
+                                <div>Tổng số môn đã đăng kí: [{this.state.numberSubjectRegisted}]</div>
+                                <button className="btn-register" onClick={this.handleSaveChange}><i className="fas fa-save btn-space"/>Lưu thay đổi</button>
                             </div>
                         </div>
-                        <div className="footer-register">
-                            <div>Tổng số môn đã đăng kí: [{this.state.numberSubjectRegisted}]</div>
-                            <button className="btn-register" onClick={this.handleSaveChange}><i className="fas fa-save btn-space"></i>Lưu thay đổi</button>
-                        </div>
                     </div>
-                </div>
+                </>
         )
     }
 }
