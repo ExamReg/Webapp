@@ -24,7 +24,8 @@ class RegisterCourses extends React.Component {
             imgIcon: "far fa-square",
             toggleCheck: false,
             checkOutRegister: false,
-            loading: false
+            loading: false,
+            firstNoti: true
         };
 
     }
@@ -57,8 +58,10 @@ class RegisterCourses extends React.Component {
             examsRegistered: arr,
             toggleCheck: true
         });
-
-        notification("info", "Môn học chỉ được chấp nhận khi bạn ấn lưu thay đổi")
+        if(this.state.firstNoti){
+            notification("info", "Môn học chỉ được chấp nhận khi bạn ấn lưu thay đổi");
+            this.setState({firstNoti: false})
+        }
     };
 
     handleClickButtonDelete = (id_slot) => {
@@ -70,8 +73,10 @@ class RegisterCourses extends React.Component {
             examsRegistered: arr,
             toggleCheck: true
         });
-        notification("info", "Môn học chỉ được chấp nhận khi bạn ấn lưu thay đổi")
-
+        if(this.state.firstNoti){
+            notification("info", "Môn học chỉ được chấp nhận khi bạn ấn lưu thay đổi");
+            this.setState({firstNoti: false})
+        }
     };
 
     checkReturnButton = (maximum_seating, seated, is_eligible, id_cs

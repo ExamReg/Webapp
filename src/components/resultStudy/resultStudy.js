@@ -76,6 +76,20 @@ class ResultStudy extends React.Component {
                 <div className="title-study">
                     Quản lý môn học
                 </div>
+                <div className="student-info">
+                    <div>
+                        <label className="inline">Họ và tên:</label><span>{this.state.nameUser}</span>
+                    </div>
+                    <div>
+                        <label className="inline">Mã sinh viên:</label><span>{this.state.idUser}</span>
+                    </div>
+                    <div>
+                        <label className="inline">Ngày sinh:</label><span>{this.state.birthday}</span>
+                    </div>
+                </div>
+                    <div className="header-tbl-study">
+                        <div className="name-tbl-study">KẾT QUẢ HỌC TẬP</div>
+                    </div>
                 <div className="dropdown-semester">
                     <span>Học kì</span>
                     <select onChange={this.selectSemester} defaultValue={0}>
@@ -89,22 +103,8 @@ class ResultStudy extends React.Component {
                 </div>
                 {
                     this.state.idSemester === 0
-                    ? <span><i>Bạn chưa chọn kỳ học!</i></span>
-                    :<div className="tbl-study">
-                            <div className="header-tbl-study">
-                                <div className="name-tbl-study">KẾT QUẢ HỌC TẬP</div>
-                                <div className="student-info">
-                                    <dl>
-                                        <dt>Họ và tên:</dt>
-                                        <dd>{this.state.nameUser}</dd>
-                                        <dt>Ngày sinh:</dt>
-                                        <dd>{this.state.birthday}</dd>
-                                        <dt>Mã sinh viên:</dt>
-                                        <dd>{this.state.idUser}</dd>
-                                    </dl>
-
-                                </div>
-                            </div>
+                        ? <span><i>Bạn chưa chọn kỳ học!</i></span>
+                        : <div className="tbl-study">
                             <div className="body-tbl-study">
                                 <table>
                                     <thead>
@@ -112,14 +112,19 @@ class ResultStudy extends React.Component {
                                         <th>STT</th>
                                         <th>Mã môn học</th>
                                         <th>Tên môn học</th>
-                                        <th>Hoàn thành môn học</th>
+                                        <th>Tình trạng</th>
+                                        <th>Điểm số</th>
                                     </tr>
                                     </thead>
                                     <tbody>
 
                                     {
                                         this.state.idSemester === "0"
-                                            ? <tr style={{fontStyle:"italic"}}><td style={{border:"none", textAlign:"left"}}>Không có dữ liệu cho kỳ học này !</td></tr>
+                                            ? <tr style={{fontStyle: "italic"}}>
+                                                <td style={{border: "none", textAlign: "left"}}>Không có dữ liệu cho kỳ học này
+                                                    !
+                                                </td>
+                                            </tr>
                                             :
                                             (this.state.courses || []).map((e, index) => {
                                                 return (
@@ -127,7 +132,13 @@ class ResultStudy extends React.Component {
                                                         <td>{index + 1}</td>
                                                         <td>{e.id_course}</td>
                                                         <td>{e.course_name}</td>
-                                                        <td>{e.is_done === 1 ? "Hoàn thành " : "Chưa hoàn thành"}</td>
+                                                        <td style={{"text-align": "center"}}>
+                                                            {e.is_eligible === 1 ? (
+                                                                <span className="badge badge-success">Đủ điều kiện</span>) :
+                                                                (<span className="badge badge-danger">Không đủ điều kiện</span>
+                                                            )}
+                                                        </td>
+                                                        <td>{parseInt(Math.random() * 10)}</td>
                                                     </tr>
                                                 );
                                             })

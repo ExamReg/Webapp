@@ -8,13 +8,12 @@
 }
 .container-study .title-study{
     font-weight: bold;
-    margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 20px;
+    margin-bottom: .5rem;
 }
 
 .container-study .dropdown-semester{
     text-align: center;
-    margin-bottom: 20px;
 }
 .container-study .dropdown-semester select{
     border-radius: 3px;
@@ -27,22 +26,17 @@
     margin-left: 10px;
 }
 /*table study */
-.container-study .tbl-study{
-    font-family: "Times New Roman";
+.container-study .tbl-study {
     font-size: 16px;
-    padding: 15px 15px;
-    max-height: calc(100vh - 250px);
+    padding-top: 15px;
+    max-height: calc(100vh - 350px);
     overflow: auto;
-    border: 1px solid #bfbfbf;
+    padding-right: 15px;
 }
-/*header table*/
-.tbl-study .header-tbl-study{
-    margin-bottom: 10px;
-}
+
 .tbl-study .header-tbl-study .name-tbl-study{
     font-weight: bold;
     text-align: center;
-    margin-bottom: 5px;
     font-size: 18px;
 }
 
@@ -71,21 +65,28 @@
     padding: 0px 10px;
 }
 
-
-.container-study .tbl-study  .header-tbl-study  .student-info{
-
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
-.container-study .tbl-study  .header-tbl-study  .student-info dl{
+.student-info dl{
     display:flex;
     align-items:center
 }
-.container-study .tbl-study  .header-tbl-study  .student-info dt{
+.student-info dt{
     margin-right: 20px;
 }
-.container-study .tbl-study  .header-tbl-study  .student-info dd{
+.student-info dd{
     font-weight: bold;
     color: #333333;
     margin-right:100px;
+}
+
+.inline{
+    width: 100px;
+    font-weight: bold;
+}
+
+.name-tbl-study {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 37px;
+    margin-bottom: .5rem;
 }
