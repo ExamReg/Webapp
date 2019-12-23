@@ -1,9 +1,9 @@
 import React from "react";
 import "./header.css"
 import logo from "./icons/logo-uet2.png";
-import iconDropdown from "./icons/icons8-sort-down-16.png";
 import Modal from "../modal/modal";
 import {changepassword, getUserInfo} from "../../api/authentication-api";
+import {notification} from "../../utils/noti";
 
 class Header extends React.Component{
     constructor(props)
@@ -40,7 +40,7 @@ class Header extends React.Component{
             this.setState({nameUser: res.data.profile.name, IdUser: res.data.profile.id_student})
         }
         else{
-            console.log(res.message)
+            notification("error", res.message)
         }
     }
     changePassword = async () =>{
@@ -54,18 +54,18 @@ class Header extends React.Component{
                 const res = await changepassword(data);
                 if(res.success)
                 {
-                    alert("success");
+                    notification("success", "Thay đổi mật khẩu thành công ")
                     this.toggleModal();
                 }
                 else
-                    console.log("loi")
+                    notification("error", res.message)
             }
             else {
-                console.log("nhap lai mat khau khong dung")
+                notification("error", "Nhập lại mật khẩu không đúng ")
             }
         }
         else
-            console.log("dien du thong tin")
+            notification("warning", "Xin điền đủ thông tin ")
     }
     handleLogout = () =>{
         localStorage.removeItem("token");
@@ -92,41 +92,49 @@ class Header extends React.Component{
                 </div>
                 <div className="group-user-menu">
                     <div className="dropdown">
-                        <button className="dropbtn">Chào mừng: {this.state.nameUser} - <b>[{this.state.IdUser}]</b> <img style={{marginTop:"-5px"}} src={iconDropdown} alt="dropdown"/></button>
-                        <div className="dropdown-content">
-                            <div className="btn-user" onClick={this.toggleModal}>
-                                <i className="fas fa-user"></i>
-                                Thay đổi mật khẩu
-                            </div>
-                            <div  className="btn-logout" onClick={this.handleLogout}>
-                                <i className="fas fa-sign-out-alt"></i>
-                                Đăng xuất
-                            </div>
-                            <Modal show={this.state.isOpen}
-                                   onClose={this.toggleModal}
-                                   addNew={this.changePassword}
-                                   title="Thay đổi mật khẩu  "
-                                   childrenContent={
-                                       <form>
-                                           <div className="modal-group">
-                                               <label>Mật khẩu hiện cũ: </label>
-                                               <input type="password" name="oldPassword" value={this.state.oldPassword} onChange={this.handleChange}/>
-                                           </div>
-                                           <div className="modal-group">
-                                               <label>Mật khẩu mới  : </label>
-                                               <input type="password" name="newPassword" value={this.state.newPassword} onChange={this.handleChange}/>
-                                           </div>
-                                           <div className="modal-group">
-                                               <label>Xác nhận lại  : </label>
-                                               <input type="password" name="rePassword" value={this.state.rePassword} onChange={this.handleChange}/>
-                                           </div>
-                                       </form>
-                                   }
-                                   brandButton={"Lưu "}
-                            />
-                        </div>
+                        <button className="dropdown-toggle btn-size btn-dropdown" type="button"
+                                data-toggle="dropdown">
+                            Chào mừng: {this.state.nameUser} - <b>{this.state.IdUser}</b>
+                            <span className="caret"/>
+                        </button>
+                        <ul className="dropdown-menu dropdown-menu-right">
+                            <li className="btn-user btn-size" onClick={this.toggleModal}>
+                                <div>
+                                    <i className="fas fa-user"/>
+                                    Thay đổi mật khẩu
+                                </div>
+                            </li>
+                            <li className="btn-logout btn-size" onClick={this.handleLogout}>
+                                <div>
+                                    <i className="fas fa-sign-out-alt"/>
+                                    Đăng xuất
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+                <Modal show={this.state.isOpen}
+                       onClose={this.toggleModal}
+                       addNew={this.changePassword}
+                       title="Thay đổi mật khẩu  "
+                       childrenContent={
+                           <form>
+                               <div className="modal-group">
+                                   <label>Mật khẩu hiện cũ: </label>
+                                   <input type="password" name="oldPassword" value={this.state.oldPassword} onChange={this.handleChange}/>
+                               </div>
+                               <div className="modal-group">
+                                   <label>Mật khẩu mới  : </label>
+                                   <input type="password" name="newPassword" value={this.state.newPassword} onChange={this.handleChange}/>
+                               </div>
+                               <div className="modal-group">
+                                   <label>Xác nhận lại  : </label>
+                                   <input type="password" name="rePassword" value={this.state.rePassword} onChange={this.handleChange}/>
+                               </div>
+                           </form>
+                       }
+                       brandButton={"Lưu "}
+                />
             </div>
         );
     }

@@ -28,21 +28,6 @@ class RegisterCourses extends React.Component {
 
     }
 
-
-    getCurrentSemester = async () => {
-        const res = await getNewEastSemster();
-        if (res.success) {
-            const data = res.data.semester;
-            this.setState({
-                idCurrentSemester: data.id_semester,
-                currentSemester: data.value,
-                timeStartRegister: moment(parseInt(data.register_from)).utcOffset(420).format("YYYY/MM/DD HH:mm"),
-                timeEndRegister: moment(parseInt(data.register_to)).utcOffset(420).format("YYYY/MM/DD HH:mm"),
-            })
-        } else {
-            notification("error", res.message);
-        }
-    };
     getListExam = async () => {
         const {idCurrentSemester} = this.state;
         const res = await getListExam(idCurrentSemester);
@@ -52,17 +37,6 @@ class RegisterCourses extends React.Component {
             console.log(res.message);
         }
 
-    };
-    getListExamRegisted = async () => {
-        const res = await getListExamRegisted();
-        if (res.success) {
-            this.setState({
-                examsRegistered: res.data.exams,
-                numberSubjectRegisted: res.data.exams.length
-            })
-        } else {
-            notification("error", res.message);
-        }
     };
 
     handleClickSelectExam = (id_cs, id_slot, id_course, course_name, time_start, time_end, location) => {

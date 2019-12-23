@@ -3,6 +3,10 @@ import './App.css';
 import {Route, Switch, Redirect} from "react-router-dom"
 import {APP_ROUTER} from "./config/app-router";
 import {ToastContainer} from "react-toastify";
+import 'jquery'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.bundle'
+
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'react-toastify/dist/ReactToastify.css';
 import Redirector from "./utils/redirector";

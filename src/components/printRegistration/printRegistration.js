@@ -1,6 +1,10 @@
 import React from "react"
 import "./style.css"
 import {getUserInfo} from "../../api/authentication-api";
+import {getSemesters} from "../../api/semester-api";
+import {getListExamRegisted} from "../../api/course-api";
+import {notification} from "../../utils/noti";
+import moment from "moment";
 
 class PrintRegistration extends React.Component{
     constructor(props)
@@ -9,7 +13,13 @@ class PrintRegistration extends React.Component{
         this.state = {
             nameUser:"",
             idUser:"",
-            birthday:""
+            birthday:"",
+
+            semesters:[],
+            idSemester:"",
+
+            examsRegistered: [],
+            numberSubjectRegisted: ""
         }
     }
     async getInfoUser() {
@@ -24,12 +34,45 @@ class PrintRegistration extends React.Component{
             console.log(res.message)
         }
     }
+    async handleGetListSemester() {
+        const res = await getSemesters();
+        if (res.success) {
+            this.setState({semesters: res.data.semesters})
+        } else {
+            console.log(res.message);
+        }
+    }
+    getListExamRegisted = async () => {
+        const {idSemester} = this.state;
 
+        const res = await getListExamRegisted(idSemester);
+        if (res.success) {
+            this.setState({
+                examsRegistered: res.data.exams,
+                numberSubjectRegisted: res.data.exams.length
+            })
+        } else {
+            notification("error", res.message);
+        }
+    };
+    selectSemester = (event) => {
+        const idSems = event.target[event.target.selectedIndex].value;
+        this.setState({idSemester: idSems});
+    }
     printScreen = () => {
       window.print();
     };
+
+
     componentDidMount() {
         this.getInfoUser();
+        this.handleGetListSemester();
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.state.idSemester !== prevState.idSemester)
+        {
+            this.getListExamRegisted();
+        }
     }
 
     render() {
@@ -37,15 +80,32 @@ class PrintRegistration extends React.Component{
         let  month = dateObj.getUTCMonth() + 1; //months from 1-12
         let day = dateObj.getUTCDate();
         let year = dateObj.getUTCFullYear();
+
         return (
             <div className="container-print ">
                 <div className="title-print ">
                     Lịch thi
                 </div>
-                <button className="btn-print" onClick={this.printScreen}>
-                    <span className="icon-print"> </span>
-                    In kết quả
-                </button>
+                <div className="header-print-left">
+                    <div className="dropdown-semester">
+                        <span>Học kì</span>
+                        <select onChange={this.selectSemester}>
+                            <option key="0" value="0">---</option>
+                            {
+                                (this.state.semesters || []).map((e, index) => {
+                                    return <option key={e.id_semester} value={e.id_semester}>{e.value}</option>
+                                })
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div className="header-print-right">
+                    <button className="btn-print" onClick={this.printScreen}>
+                        <span className="icon-print"> </span>
+                        In kết quả
+                    </button>
+                </div>
+
                 <div className="tbl-print ">
                     <div className="title-form">
                         <div className="title-left">
@@ -58,7 +118,7 @@ class PrintRegistration extends React.Component{
                         </div>
                     </div>
                     <div className="header-tbl-print ">
-                        <div className="name-tbl-print">KẾT QUẢ ĐĂNG KÍ THI - HỌC KÌ I NĂM 2018-2019</div>
+                        <div className="name-tbl-print">KẾT QUẢ ĐĂNG KÍ THI - {this.state.examsRegistered.findIndex(e => e.id_semester === this.state.idSemester).value}</div>
                         <div className="name-tbl-print date">Ngày {day} tháng {month} năm {year}</div>
                         <div className="student-info">
                             <dl>
@@ -81,45 +141,28 @@ class PrintRegistration extends React.Component{
                                 <th>Ngày thi </th>
                                 <th>Giờ thi </th>
                                 <th>Phòng thi </th>
-                                <th>SBD </th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-
-                                <td>308G2</td>
-                                <td>1</td>
-
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-
-                                <td>308G2</td>
-                                <td>1</td>
-
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>INT2028 2</td>
-                                <td>Toán rời rạc </td>
-                                <td>23/04/2019</td>
-                                <td>7 AM</td>
-
-                                <td>308G2</td>
-                                <td>1</td>
-                            </tr>
+                            {
+                                this.state.examsRegistered.length === 0
+                                ? <tr><td colSpan={6}><i>Bạn chưa chọn học kỳ!</i></td></tr>
+                                :
+                                    (this.state.examsRegistered).map((e, index) => {
+                                        return(
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{e.id_course}</td>
+                                            <td>{e.course_name}</td>
+                                            <td>{moment(parseInt(e.time_start)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
+                                            <td>{moment(parseInt(e.time_end)).utcOffset(420).format("YYYY/MM/DD HH:mm")}</td>
+                                            <td>{e.location}</td>
+                                        </tr>
+                                        )})
+                            }
                             </tbody>
                         </table>
-                        <div style={{marginTop:"30px"}}>Tổng số môn thi đã đăng kí: [3]</div>
+                        <div style={{marginTop:"30px"}}>Tổng số môn thi đã đăng kí: [{this.state.numberSubjectRegisted}]</div>
                         <div style={{marginTop:"30px"}} className="title-form">
                             <div className="title-left">
                                 <p>SINH VIÊN </p>

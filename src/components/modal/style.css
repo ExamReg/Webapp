@@ -8,18 +8,18 @@
     padding: 50px;
     z-index: 9999;
 }
-.modal{
+.modalcs{
     background-color: #fff;
     border-radius: 5px;
     max-width: 500px;
     margin: 20px auto;
     position: relative;
-
+    font-size: 15px;
 }
 
 /*HEADER MODAL*/
-.modal-header {
-    height: 65px;
+.modalcs-header {
+
     border-bottom: 1px solid #bfbfbf;
     display: -webkit-flex;
     display: flex;
@@ -28,10 +28,10 @@
     -webkit-justify-content: space-between;
     justify-content: space-between;
 }
-    .modal-header .modal-title{
+    .modalcs-header .modal-title{
         margin: 19px 20px;
     }
-    .modal-header .btn-close{
+    .modalcs-header .btn-close{
         border: none;
         background-color:#fff;
         cursor: pointer;
@@ -42,14 +42,14 @@
         font-weight: 600;
         font-size: 20px;
     }
-        .modal-header .btn-close:hover{
+        .modalcs-header .btn-close:hover{
             color: #212529;
         }
 
 /*CONTENT*/
 
 
-.modal-content{
+.modalcs-content{
     min-height: 60px;
     margin: 10px 20px;
 }
@@ -59,6 +59,7 @@
 .modal-group{
     height: 50px;
     margin-top: 10px;
+    align-items: center;
 }
 .modal-group label{
     float: left;
@@ -69,7 +70,7 @@
 .modal-group input{
     border-radius: 3px;
     font-size: 14px;
-    height: 30px;
+    height: 35px;
     padding: 5px;
     width: 260px;
     float: right;
@@ -80,7 +81,7 @@
 
 /*HELP MODAL*/
 .modal-help{
-    height: 30px;
+    height: 20px;
 
 }
     .modal-help .group-link{
@@ -101,6 +102,7 @@
         border: none;
         background-color: white;
         color: #007BFF;
+        font-size: 15px;
     }
     .modal-help .group-link .btn-forgetpass:hover{
         text-decoration: underline;
@@ -108,7 +110,7 @@
 
 
 /*FOOTER MODAL*/
-.modal-footer{
+.modalcs-footer{
     height: 65px;
     border-top: 1px solid #bfbfbf;
     justify-content: flex-end;

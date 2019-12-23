@@ -5,6 +5,7 @@
     right: 0;
     left: 0;
     bottom: 0;
+    font-size: 15px;
 }
 /*CLAIM*/
 .container-claim{
@@ -68,7 +69,6 @@
         }
 /*BODY*/
 .container-register .body-register{
-
 }
 .container-register .box{
     margin-bottom: 10px;

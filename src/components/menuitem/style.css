@@ -15,8 +15,8 @@
         display: flex;
         -webkit-align-items: center;
         align-items: center;
-        font-weight: bold;
-        font-size: 15px;
+
+        font-size: 16px;
     }
     .menu-item .link-text .icon-content{
         width: 30px;

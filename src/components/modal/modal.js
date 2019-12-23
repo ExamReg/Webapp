@@ -10,10 +10,10 @@ class Modal extends React.Component {
 
         return (
             <div className="backdrop">
-                <div className="modal">
+                <div className="modalcs">
 
 
-                    <div className="modal-header">
+                    <div className="modalcs-header">
                         <h2 className="modal-title">{this.props.title}</h2>
                         <button className="btn-close" onClick={this.props.onClose}>
                             x
@@ -21,7 +21,7 @@ class Modal extends React.Component {
                     </div>
 
 
-                    <div className="modal-content">
+                    <div className="modalcs-content">
                         {this.props.childrenContent}
                     </div>
 
@@ -30,7 +30,7 @@ class Modal extends React.Component {
                         {this.props.childrenHelp}
                     </div>
 
-                    <div className="modal-footer">
+                    <div className="modalcs-footer">
                         <div className="footer-group">
                             <button className="btn-modal cancel" onClick={this.props.onClose}>
                                 Hủy bỏ
