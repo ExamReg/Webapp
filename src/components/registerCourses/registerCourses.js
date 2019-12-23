@@ -202,7 +202,7 @@ class RegisterCourses extends React.Component {
                                         <th>Bắt đầu</th>
                                         <th>Kết thúc</th>
                                         <th>Phòng thi</th>
-                                        <th></th>
+                                        <th>Chọn  </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -264,7 +264,7 @@ class RegisterCourses extends React.Component {
                                                         <td className="style-center">
                                                             <button className="btn-delete"
                                                                     onClick={() => this.handleClickButtonDelete(e.id_slot)}>
-                                                                Xóa
+                                                                <i className="fas fa-trash-alt"></i>
                                                             </button>
                                                         </td>
                                                     </tr>
@@ -277,7 +277,7 @@ class RegisterCourses extends React.Component {
                         </div>
                         <div className="footer-register">
                             <div>Tổng số môn đã đăng kí: [{this.state.numberSubjectRegisted}]</div>
-                            <button className="btn-register" onClick={this.handleSaveChange}>Lưu thay đổi</button>
+                            <button className="btn-register" onClick={this.handleSaveChange}><i className="fas fa-save btn-space"></i>Lưu thay đổi</button>
                         </div>
                     </div>
                 </div>

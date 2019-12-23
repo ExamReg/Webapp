@@ -21,7 +21,7 @@
 }
 .container-home .header .group-title .title{
     font-size: 30px;
-    color: #1b548b;
+    color: #1c4d90;
     font-family: "Times New Roman";
 }
 .container-home .header .group-user-menu{
@@ -30,9 +30,9 @@
     margin: 20px 0px;
 }
 .group-user-menu .user-info{
-    border: 1px solid #1b548b;
+    border: 1px solid #007BFF;
 
-    background-color: #1b548b;
+    background-color: #007BFF;
     color: #fff;
     padding: 10px 10px;
     height: 16px;
@@ -42,15 +42,15 @@
 }
 
 .btn-dropdown{
-   background-color: #1b548b;
-    border: 1px solid #1b548b;
+   background-color: #007BFF;
+    border: 1px solid #007BFF;
     height: 35px;
     color: #fff;
     border-radius: 3px;
 }
 .group-user-menu .dropdown .btn-user-main{
-    background-color: #1b548b;
-    border: #1b548b;
+    background-color: #007BFF;
+    border: #007BFF;
     color: #fff;
 }
 .dropdown-menu .icons{
@@ -61,7 +61,7 @@
     display: block;
 }
 .dropdown-menu .btn-logout:hover, .btn-user:hover {
-    background-color: #1b548b;
+    background-color: #007BFF;
     color: #fff;
 }
 .dropdown-menu .btn-logout div, .btn-user div{

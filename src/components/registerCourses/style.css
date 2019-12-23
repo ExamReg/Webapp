@@ -33,7 +33,7 @@
 }
 .container-claim .title-register{
     font-weight: bold;
-    margin-bottom: 10px;
+
     font-size: 16px;
 }
 .container-claim .time-register{
@@ -47,7 +47,6 @@
 }
     .container-register .title-register{
         font-weight: bold;
-        margin-bottom: 10px;
         font-size: 16px;
     }
     .container-register .time-register{
@@ -65,7 +64,7 @@
             height: 20px;
             padding: 5px;
             width: 260px;
-            border: 1px solid #1b548b;
+            border: 1px solid #007bff;
         }
 /*BODY*/
 .container-register .body-register{
@@ -75,7 +74,7 @@
 }
 /*blue*/
 .container-register .box.blue-border .box-header{
-    background-color: #1b548b;
+    background-color: #2692ff;
     padding: 10px 10px;
     font-size: 25px;
     position: sticky;
@@ -83,7 +82,7 @@
 
 }
 .container-register .box.blue-border .box-content{
-    max-height: calc((100vh - 250px)/2);
+    max-height: calc((100vh - 270px)/2);
     overflow: auto;
 }
 .container-register .box.blue-border .box-content table{
@@ -118,7 +117,7 @@
     color: #fff;
 }
 .container-register .box.green-border .box-content{
-    max-height: calc((100vh - 250px)/2);
+    max-height: calc((100vh - 270px)/2);
     overflow: auto;
 }
 .container-register .box.green-border .box-content table{
@@ -153,8 +152,8 @@
     margin-top: 10px;
 }
     .container-register .btn-register{
-        border: 1px solid #1b548b;
-        background-color: #1b548b;
+        border: 1px solid #007bff;
+        background-color: #007bff;
         color: #fff;
         height: 30px;
         border-radius: 3px;
@@ -175,10 +174,10 @@
     padding: 2px 5px;
 }
 .container-register .btn-tick{
-    border: 1px solid #1b548b;
+    border: 1px solid #007bff;
     border-radius: 3px;
     color: #fff;
-    background-color: #1b548b;
+    background-color: #007bff;
     cursor: pointer;
     padding: 2px 5px;
 }

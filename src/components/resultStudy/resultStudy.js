@@ -10,7 +10,7 @@ class ResultStudy extends React.Component {
         this.state = {
             semesters: [],
             courses: [],
-            idSemester: "0",
+            idSemester: 0,
 
             idUser: "",
             nameUser: "",
@@ -78,8 +78,8 @@ class ResultStudy extends React.Component {
                 </div>
                 <div className="dropdown-semester">
                     <span>Học kì</span>
-                    <select onChange={this.selectSemester}>
-                        <option key="0" value="0">---</option>
+                    <select onChange={this.selectSemester} defaultValue={0}>
+                        <option key="0" value="0" disabled={true}>---</option>
                         {
                             (this.state.semesters || []).map((e, index) => {
                                 return <option key={e.id_semester} value={e.id_semester}>{e.value}</option>
@@ -87,52 +87,57 @@ class ResultStudy extends React.Component {
                         }
                     </select>
                 </div>
-                <div className="tbl-study">
-                    <div className="header-tbl-study">
-                        <div className="name-tbl-study">KẾT QUẢ HỌC TẬP</div>
-                        <div className="student-info">
-                            <dl>
-                                <dt>Họ và tên:</dt>
-                                <dd>{this.state.nameUser}</dd>
-                                <dt>Ngày sinh:</dt>
-                                <dd>{this.state.birthday}</dd>
-                                <dt>Mã sinh viên:</dt>
-                                <dd>{this.state.idUser}</dd>
-                            </dl>
+                {
+                    this.state.idSemester === 0
+                    ? <span><i>Bạn chưa chọn kỳ học!</i></span>
+                    :<div className="tbl-study">
+                            <div className="header-tbl-study">
+                                <div className="name-tbl-study">KẾT QUẢ HỌC TẬP</div>
+                                <div className="student-info">
+                                    <dl>
+                                        <dt>Họ và tên:</dt>
+                                        <dd>{this.state.nameUser}</dd>
+                                        <dt>Ngày sinh:</dt>
+                                        <dd>{this.state.birthday}</dd>
+                                        <dt>Mã sinh viên:</dt>
+                                        <dd>{this.state.idUser}</dd>
+                                    </dl>
 
+                                </div>
+                            </div>
+                            <div className="body-tbl-study">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Mã môn học</th>
+                                        <th>Tên môn học</th>
+                                        <th>Hoàn thành môn học</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {
+                                        this.state.idSemester === "0"
+                                            ? <tr style={{fontStyle:"italic"}}><td style={{border:"none", textAlign:"left"}}>Không có dữ liệu cho kỳ học này !</td></tr>
+                                            :
+                                            (this.state.courses || []).map((e, index) => {
+                                                return (
+                                                    <tr key={index + 1}>
+                                                        <td>{index + 1}</td>
+                                                        <td>{e.id_course}</td>
+                                                        <td>{e.course_name}</td>
+                                                        <td>{e.is_done === 1 ? "Hoàn thành " : "Chưa hoàn thành"}</td>
+                                                    </tr>
+                                                );
+                                            })
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <div className="body-tbl-study">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Mã môn học</th>
-                                <th>Tên môn học</th>
-                                <th>Hoàn thành môn học</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                }
 
-                            {
-                                this.state.idSemester === "0"
-                                    ? <tr style={{fontStyle:"italic"}}><td style={{border:"none", textAlign:"left"}}>Bạn chưa chọn học kì !</td></tr>
-                                    :
-                                    (this.state.courses || []).map((e, index) => {
-                                        return (
-                                            <tr key={index + 1}>
-                                                <td>{index + 1}</td>
-                                                <td>{e.id_course}</td>
-                                                <td>{e.course_name}</td>
-                                                <td>{e.is_done === 1 ? "Hoàn thành " : "Chưa hoàn thành"}</td>
-                                            </tr>
-                                        );
-                                    })
-                            }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
         );
     }

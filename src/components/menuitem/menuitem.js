@@ -10,7 +10,7 @@ class MenuItem extends React.Component{
                 <NavLink exact
                     activeStyle={{
                         backgroundColor : "#fff",
-                        color:"#1b548b"
+                        color:"#007bff"
                     }}
                     to={this.props.route} className="link-text">
 
