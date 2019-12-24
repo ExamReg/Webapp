@@ -6,14 +6,19 @@
     bottom: 0;
     font-size: 15px;
 }
+.container-study .student-info{
+    margin-top: 10px;
+}
 .container-study .title-study{
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: .5rem;
 }
 
 .container-study .dropdown-semester{
     text-align: center;
+    display: flex;
+    margin-bottom: 10px;
 }
 .container-study .dropdown-semester select{
     border-radius: 3px;
@@ -37,7 +42,7 @@
 .tbl-study .header-tbl-study .name-tbl-study{
     font-weight: bold;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 /*body study*/
@@ -87,6 +92,6 @@
     display: flex;
     justify-content: center;
     font-weight: bold;
-    font-size: 37px;
+    font-size: 20px;
     margin-bottom: .5rem;
 }

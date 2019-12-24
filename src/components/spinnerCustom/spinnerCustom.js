@@ -1,13 +1,9 @@
 import React from "react";
-import { css } from "@emotion/core";
 import {PulseLoader } from "react-spinners";
 import "./spinnerCustom.css"
 
 
 export default class SpinnerCustom extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (

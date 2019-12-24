@@ -3,6 +3,7 @@ import "./style.css";
 import logo from "../header/icons/logo-uet2.png";
 import {login} from "../../api/authentication-api";
 import {notification} from "../../utils/noti";
+import Modal from "../modal/modal";
 
 class Login extends React.Component{
     constructor()
@@ -12,7 +13,10 @@ class Login extends React.Component{
         this.state={
             login:false,
             username:"",
-            password:""
+            password:"",
+
+            isOpen:false,
+            emailUser:""
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
@@ -41,6 +45,10 @@ class Login extends React.Component{
             }
         }
         else notification("warning", "Xin điền đủ thông tin")
+    }
+    toogleOpen = () =>
+    {
+        this.setState({isOpen: !this.state.isOpen})
     }
     render() {
         if(this.state.login)
@@ -75,7 +83,7 @@ class Login extends React.Component{
 
                     <div className="login-card-help">
                         <div className="group-link">
-                            <button className="btn-forgetpass space">Quên mật khẩu? </button>
+                            <button className="btn-forgetpass space" onClick={this.toogleOpen}>Quên mật khẩu? </button>
                         </div>
                     </div>
                     <div className="login-card-footer">
@@ -85,7 +93,29 @@ class Login extends React.Component{
                     </div>
                 </div>
             </div>
+                <Modal show={this.state.isOpen}
+                       title="Quên mật khẩu "
+                       onClose={this.toogleOpen}
+                       addNew={() => {
+                           if(this.state.emailUser) {
+                               notification("success", "Yêu cầu của bạn đã gửi thành công ");
+                               this.setState({emailUser: ""});
+                               this.toogleOpen();
+                           }
+                           else {
+                               notification("warning", "Xin điền đủ thông tin! ")
+                           }
+                       }}
+                       brandButton={"Gửi "}
+                       childrenContent={
+                           <div className="modal-group">
+                               <label>Email của bạn: </label>
+                               <input type="text" name="emailUser" onChange={this.handleChange} value={this.state.emailUser}/>
+                           </div>
+                       }
+                       />
             </div>
+
         );
     }
 };
