@@ -1,5 +1,6 @@
+/*
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -19,4 +20,8 @@
 
 .App-link {
   color: #09d3ac;
+}
+*/
+.btn-space{
+    margin-right: 5px;
 }

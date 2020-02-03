@@ -1,0 +1,30 @@
+
+
+/*Content*/
+
+.container-home .content-home{
+    top: 100px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+
+}
+.container-home .menubar{
+    width: 260px;
+    left: 0;
+    bottom: 0;
+    top:0;
+    position: absolute;
+    color: #000;
+    background-color: #f4f7fe;
+}
+.container-home .content{
+    position: absolute;
+    top: 0;
+    left: 260px;
+    right: 0;
+    bottom: 0;
+    margin-left: 15px;
+    margin-top: 5px;
+}

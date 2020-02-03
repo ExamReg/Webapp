@@ -1,0 +1,135 @@
+.container-print {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    font-size: 15px;
+}
+.container-print  .title-print {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+.container-print .header-print-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-print .header-print-right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.container-print  .dropdown-semester{
+    align-items: center;
+    display: flex;
+}
+.container-print  .dropdown-semester select{
+    border-radius: 3px;
+    border: 1px solid #007bff;
+    height: 35px;
+    background-color: #fff;
+    width: 250px;
+    padding: 5px 5px;
+
+    margin-left: 10px;
+}
+/*table print  */
+.container-print  .tbl-print {
+    margin-top: 10px;
+    font-family: "Times New Roman" ;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #dfdfdf;
+    box-shadow: #000000;
+    margin-bottom: 20px;
+    max-height: calc(100vh - 300px);
+    overflow: auto;
+}
+/*header table*/
+.tbl-print  .header-tbl-print {
+    margin-bottom: 10px;
+}
+
+
+/*body print */
+.tbl-print  .body-tbl-print {
+    overflow: auto;
+    max-height: 500px;
+}
+.tbl-print  .body-tbl-print  table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.tbl-print  .body-tbl-print  th{
+    font-size: 14px;
+    position: sticky;
+    border: 1px solid gray;
+    top:-1px;
+    height: 30px;
+    text-align: left;
+}
+.tbl-print  .body-tbl-print  td{
+    font-size: 14px;
+    height: 30px;
+    text-align: left;
+    border: 1px solid gray;
+}
+
+.container-print .btn-print{
+    margin-top: 10px;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #fff;
+    padding: 5px 5px;
+    /*neu div sau dung thif clear:right*/
+    cursor: pointer;
+}
+.container-print .btn-print .icon-print{
+    background:url("./icons/icons8-print-16.png") no-repeat 1px 1px;
+    padding: 0px 12px;
+}
+/*title form*/
+.container-print .title-form{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.container-print .title-form .title-left{
+    text-align: center;
+}
+.container-print .title-form .title-right{
+    text-align: center;
+}
+.tbl-print  .header-tbl-print  .name-tbl-print.date{
+    margin-bottom: 40px;
+}
+.header-tbl-print  .student-info{
+
+    margin-bottom: 20px;
+}
+ .header-tbl-print  .student-info dl{
+    display:flex;
+    align-items:center
+}
+ .header-tbl-print  .student-info dt{
+    margin-right: 20px;
+}
+  .header-tbl-print  .student-info dd{
+    font-weight: bold;
+    color: #333333;
+    margin-right:80px;
+}
+
+.tbl-print  .header-tbl-print  .name-tbl-print {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.tbl-print  .header-tbl-print  .name-tbl-print.date{
+    margin-bottom: 40px;
+}

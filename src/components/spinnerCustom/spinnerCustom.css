@@ -1,0 +1,10 @@
+.cover {
+    min-width: 100vw;
+    min-height: 100vh;
+    position: fixed;
+    display: flex;
+    background-color: #0008;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}

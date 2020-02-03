@@ -1,0 +1,23 @@
+.menu-item{
+    cursor: pointer;
+}
+    .menu-item:hover{
+        background-color:#e6e6e6;
+    }
+    .menu-item .link-text{
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        text-decoration: none;
+        cursor: pointer;
+        color: #000000;
+        padding: 15px 10px 15px 20px;
+        transition-duration: .15s;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+
+        font-size: 16px;
+    }
+    .menu-item .link-text .icon-content{
+        width: 30px;
+    }
